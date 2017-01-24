@@ -42,8 +42,8 @@ final class ChatModel: NSObject {
         messages.append(photoMessage!)
        // messages.append(JSQMessage(senderId: botID, senderDisplayName: userID, date: Date.distantPast, text: "TEST"))
         messages.append(JSQMessage(senderId: botID, senderDisplayName: userID, date: Date.distantPast, text: "You're all caught up for today!\nI can give you tips and odds for all of todays races. Just let me know what you need."))
-        self.incomingBubbleImageData = bubbleFactory?.incomingMessagesBubbleImage(with: UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0, alpha: 1.0))
-        self.outgoingBubbleImageData = bubbleFactory?.outgoingMessagesBubbleImage(with: UIColor(red: 57.0/255.0, green: 130.0/255.0, blue: 246.0/255.0, alpha: 1.0))
+        self.incomingBubbleImageData = bubbleFactory?.incomingMessagesBubbleImage(with: UIColor(red: 96.0/255.0, green: 143.0/255.0, blue: 191.0/255.0, alpha: 1.0))
+        self.outgoingBubbleImageData = bubbleFactory?.outgoingMessagesBubbleImage(with: UIColor(red: 232.0/255.0, green: 232.0/255.0, blue: 232.0/255.0, alpha: 1.0))
         //JSQMessagesAvatarImage *cookImage = [avatarFactory avatarImageWithImage:[UIImage imageNamed:@"demo_avatar_cook"]];
         let botAvatar = JSQMessagesAvatarImageFactory.avatarImage(with: UIImage(named:"BotImage"), diameter:kJSQMessagesCollectionViewAvatarSizeDefault)
         if let unwrappedImage = botAvatar {

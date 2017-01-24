@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2905208DC522FD5105F19E64 /* Pods_Chatbot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83CEB8A7D521827C83EF604B /* Pods_Chatbot.framework */; };
+		B19D36341E378A85006BD3DA /* QuickReplyConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19D36331E378A85006BD3DA /* QuickReplyConfigurator.swift */; };
 		B1CD80601E36600C006CF685 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CD805F1E36600C006CF685 /* AppDelegate.swift */; };
 		B1CD80621E36600C006CF685 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CD80611E36600C006CF685 /* MessagesViewController.swift */; };
 		B1CD80651E36600C006CF685 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1CD80631E36600C006CF685 /* Main.storyboard */; };
@@ -21,6 +22,7 @@
 /* Begin PBXFileReference section */
 		7880071F1E5287457651AEDE /* Pods-Chatbot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chatbot.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chatbot/Pods-Chatbot.debug.xcconfig"; sourceTree = "<group>"; };
 		83CEB8A7D521827C83EF604B /* Pods_Chatbot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chatbot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B19D36331E378A85006BD3DA /* QuickReplyConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuickReplyConfigurator.swift; path = ChatModel/QuickReplyConfigurator.swift; sourceTree = "<group>"; };
 		B1CD805C1E36600C006CF685 /* Chatbot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chatbot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1CD805F1E36600C006CF685 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1CD80611E36600C006CF685 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 			children = (
 				B1CD80781E374A81006CF685 /* MessagingService.swift */,
 				B1CD80721E366945006CF685 /* ChatModel.swift */,
+				B19D36331E378A85006BD3DA /* QuickReplyConfigurator.swift */,
 			);
 			name = ChatModel;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B19D36341E378A85006BD3DA /* QuickReplyConfigurator.swift in Sources */,
 				B1CD80791E374A81006CF685 /* MessagingService.swift in Sources */,
 				B1CD80621E36600C006CF685 /* MessagesViewController.swift in Sources */,
 				B1CD80601E36600C006CF685 /* AppDelegate.swift in Sources */,

@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "3C62386DBC8B161717D956E0FD6C0E47F080D262",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "55ADDB601B87F45428ADC586574C22B3A1AB4037" : 9223372036854775807,
+    "3C62386DBC8B161717D956E0FD6C0E47F080D262" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "53FE8E36-5FB7-42A5-AAE8-FFA7FBA52382",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "55ADDB601B87F45428ADC586574C22B3A1AB4037" : "",
+    "3C62386DBC8B161717D956E0FD6C0E47F080D262" : "Chatbot\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Chatbot",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Chatbot.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ArtemChaykovsky\/Chatbot.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3C62386DBC8B161717D956E0FD6C0E47F080D262"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/bitbucket.org\/onix-systems\/kaliapp.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "55ADDB601B87F45428ADC586574C22B3A1AB4037"
+    }
+  ]
+}

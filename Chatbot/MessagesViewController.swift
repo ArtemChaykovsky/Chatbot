@@ -11,9 +11,14 @@ import JSQMessagesViewController
 
 final class MessagesViewController: JSQMessagesViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    var quickReplyView: UIView!
     let chatModel = ChatModel()
     lazy var messageService = FRService()
+    lazy var quickReplyConfigurator = QuickReplyConfigurator()
     let imagePickerController = UIImagePickerController();
+    var quickReplyButtons:[QuickReply] {
+        return [QuickReply.button(text:"Tips"),QuickReply.button(text:"Odds"),QuickReply.button(text:"Subscriptions"), QuickReply.button(text:"Human")]
+    }
 
     override func viewDidLoad() {
 
@@ -26,7 +31,7 @@ final class MessagesViewController: JSQMessagesViewController, UIImagePickerCont
         imagePickerController.modalPresentationStyle = .custom;
         configureQuickReply()
         messageService.onMessageReceived = { message in
-            
+
         }
     }
 
@@ -35,7 +40,7 @@ final class MessagesViewController: JSQMessagesViewController, UIImagePickerCont
             return userID
         }
         set {
-            self.senderId = newValue
+
         }
     }
 
@@ -44,62 +49,75 @@ final class MessagesViewController: JSQMessagesViewController, UIImagePickerCont
             return userName
         }
         set {
-            self.senderDisplayName = newValue
+
         }
     }
 
 
     func configureQuickReply() {
-        //self.topContentAdditionalInset = 80
+
+        collectionView.collectionViewLayout.sectionInset = UIEdgeInsetsMake(10, 10, 70, 10)
+        collectionView.backgroundColor = UIColor(red: 244/255.0, green: 244/255.0, blue: 244/255.0, alpha: 1)
+
+        quickReplyView = UIView(frame: CGRect(x: 0, y: view.frame.size.height-140, width: view.frame.size.width, height: 60))
+        quickReplyView.backgroundColor = UIColor(red: 244/255.0, green: 244/255.0, blue: 244/255.0, alpha: 1)
+
+        let tips = UIButton(frame: CGRect(x: 10, y: 10, width: 60, height: 30))
+        tips.setTitleColor(UIColor(red: 96/255.0, green: 143/255.0, blue: 191/255.0, alpha: 1), for: .normal)
+        tips.setTitle("Tips", for: .normal)
+        tips.layer.borderWidth = 1
+        tips.layer.borderColor = UIColor(red: 96/255.0, green: 143/255.0, blue: 191/255.0, alpha: 1).cgColor
+        tips.layer.cornerRadius = 15
+        tips.addTarget(self, action: #selector(tipsButtonPressed),for:.touchUpInside)
+
+        let odds = UIButton(frame: CGRect(x: 80, y: 10, width: 75, height: 30))
+        odds.setTitleColor(UIColor(red: 96/255.0, green: 143/255.0, blue: 191/255.0, alpha: 1), for: .normal)
+        odds.setTitle("Odds", for: .normal)
+        odds.layer.borderWidth = 1
+        odds.layer.borderColor = UIColor(red: 96/255.0, green: 143/255.0, blue: 191/255.0, alpha: 1).cgColor
+        odds.layer.cornerRadius = 15
+        odds.addTarget(self, action: #selector(oddsButtonPressed),for:.touchUpInside)
+
+        let subscroptions = UIButton(frame: CGRect(x: 165, y: 10, width: 125, height: 30))
+        subscroptions.setTitleColor(UIColor(red: 96/255.0, green: 143/255.0, blue: 191/255.0, alpha: 1), for: .normal)
+        subscroptions.setTitle("Subscriptions", for: .normal)
+        subscroptions.layer.borderWidth = 1
+        subscroptions.layer.borderColor = UIColor(red: 96/255.0, green: 143/255.0, blue: 191/255.0, alpha: 1).cgColor
+        subscroptions.layer.cornerRadius = 15
+
+        let human = UIButton(frame: CGRect(x: 300, y: 10, width: 70, height: 30))
+        human.setTitleColor(UIColor(red: 96/255.0, green: 143/255.0, blue: 191/255.0, alpha: 1), for: .normal)
+        human.setTitle("Human", for: .normal)
+        human.layer.borderWidth = 1
+        human.layer.borderColor = UIColor(red: 96/255.0, green: 143/255.0, blue: 191/255.0, alpha: 1).cgColor
+        human.layer.cornerRadius = 15
+
+        quickReplyView.addSubview(tips)
+        quickReplyView.addSubview(odds)
+        quickReplyView.addSubview(subscroptions)
+        quickReplyView.addSubview(human)
+
+        quickReplyView.translatesAutoresizingMaskIntoConstraints = false
+        let trailing = NSLayoutConstraint(item: quickReplyView, attribute: .trailing, relatedBy: .equal, toItem:view, attribute: .trailing, multiplier: 1.0, constant: 0)
+        let leading = NSLayoutConstraint(item: quickReplyView, attribute: .leading, relatedBy: .equal, toItem:view, attribute: .leading, multiplier: 1.0, constant: 0)
+        let bottom = NSLayoutConstraint(item: quickReplyView, attribute: .bottom, relatedBy: .equal, toItem:inputToolbar, attribute: .top, multiplier: 1.0, constant: 0)
+        let width = NSLayoutConstraint(item: quickReplyView, attribute: .width, relatedBy: .equal, toItem: view, attribute: .width, multiplier: 1, constant: 0)
+        let height = NSLayoutConstraint(item: quickReplyView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 50)
+
+        view.addSubview(quickReplyView)
+        view.addConstraints([trailing,leading,bottom,width,height])
+
+       // let quickReplyView = quickReplyConfigurator.configureQuickReplyView(buttons:quickReplyButtons)
+
+        for button in quickReplyButtons {
+            addButtonToQuickReply(title:button.text)
+        }
     }
 
-//    #pragma mark - UICollectionView DataSource
-//
-//    - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-//    {
-//    return [self.demoData.messages count];
-//    }
-//
-//    - (UICollectionViewCell *)collectionView:(JSQMessagesCollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-//    {
-//    /**
-//     *  Override point for customizing cells
-//     */
-//    JSQMessagesCollectionViewCell *cell = (JSQMessagesCollectionViewCell *)[super collectionView:collectionView cellForItemAtIndexPath:indexPath];
-//
-//    /**
-//     *  Configure almost *anything* on the cell
-//     *
-//     *  Text colors, label text, label colors, etc.
-//     *
-//     *
-//     *  DO NOT set `cell.textView.font` !
-//     *  Instead, you need to set `self.collectionView.collectionViewLayout.messageBubbleFont` to the font you want in `viewDidLoad`
-//     *
-//     *
-//     *  DO NOT manipulate cell layout information!
-//     *  Instead, override the properties you want on `self.collectionView.collectionViewLayout` from `viewDidLoad`
-//     */
-//
-//    JSQMessage *msg = [self.demoData.messages objectAtIndex:indexPath.item];
-//
-//    if (!msg.isMediaMessage) {
-//
-//    if ([msg.senderId isEqualToString:self.senderId]) {
-//    cell.textView.textColor = [UIColor blackColor];
-//    }
-//    else {
-//    cell.textView.textColor = [UIColor whiteColor];
-//    }
-//
-//    cell.textView.linkTextAttributes = @{ NSForegroundColorAttributeName : cell.textView.textColor,
-//    NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle | NSUnderlinePatternSolid) };
-//    }
-//
-//    cell.accessoryButton.hidden = ![self shouldShowAccessoryButtonForMessage:msg];
-//
-//    return cell;
-//    }
+    func addButtonToQuickReply(title:String) {
+
+    }
+
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return chatModel.messages.count
@@ -132,6 +150,7 @@ final class MessagesViewController: JSQMessagesViewController, UIImagePickerCont
 //            }
 //        }
 
+
        let message = Message(id: "",
                               seq: "",
                               text: text,
@@ -158,9 +177,9 @@ final class MessagesViewController: JSQMessagesViewController, UIImagePickerCont
             cell?.textView!.textColor = UIColor.black
 
             if msg.senderId == userID {
-                cell?.textView.textColor = UIColor.white
+                cell?.textView.textColor = UIColor(red: 98/255.0, green: 98/255.0, blue: 98/255.0, alpha: 1)
             } else {
-                cell?.textView.textColor = UIColor(red: 48/255.0, green: 48/255.0, blue: 47/255.0, alpha: 1)
+                cell?.textView.textColor = UIColor.white
             }
         }
         return cell!
@@ -176,6 +195,17 @@ final class MessagesViewController: JSQMessagesViewController, UIImagePickerCont
         imagePickerController.dismiss(animated: true, completion: nil)
         self.finishSendingMessage()
     }
+
+    func tipsButtonPressed() {
+        chatModel.messages.append(JSQMessage(senderId: userID, senderDisplayName: userID, date: Date.distantPast, text: "Tips"))
+        self.finishSendingMessage()
+    }
+
+    func oddsButtonPressed() {
+        chatModel.messages.append(JSQMessage(senderId: userID, senderDisplayName: userID, date: Date.distantPast, text: "Odds"))
+        self.finishSendingMessage()
+    }
+
 
 }
 

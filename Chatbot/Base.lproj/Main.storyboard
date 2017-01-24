@@ -32,7 +32,7 @@
         <scene sceneID="Cwq-1O-K23">
             <objects>
                 <navigationController id="npU-S1-sXP" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="N7K-DN-Xs7">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="N7K-DN-Xs7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
