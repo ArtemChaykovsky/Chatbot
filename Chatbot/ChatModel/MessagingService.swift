@@ -100,14 +100,13 @@ extension Message {
 }
 
 protocol Service {
+    var demoMode:Bool { get set }
     var onMessageReceived:(Result<Message>)->() { get set }
     func send(msg:Message)
 }
 
-
-
 final class WSService: Service {
-    
+    var demoMode = false
     let ws:WebSocket!
     var onMessageReceived: (Result<Message>) -> () = { _ in }
     
@@ -130,22 +129,55 @@ final class WSService: Service {
 }
 
 final class FRService: Service {
+    var timer:Timer!
     
+    var demoMode: Bool = false {
+        didSet {
+            timer = Timer.scheduledTimer(timeInterval: CDouble(arc4random_uniform(10)), target: self, selector: #selector(fakeMessage), userInfo: nil, repeats: false)
+        }
+    }
     lazy var ref: FIRDatabaseReference = FIRDatabase.database().reference()
+    var conversationRef:FIRDatabaseReference!
     var onMessageReceived: (Result<Message>) -> () = { _ in }
     
     init() {
-        ref.child("messages").observe(.childAdded, with: { (snapshot) in
-            if let message = Message(snapshot: snapshot) {
-                self.onMessageReceived(.success(r: message))
+        FIRAuth.auth()?.signInAnonymously() { (user, error) in
+            if let user = user {
+                self.conversationRef = self.ref.child(user.uid)
+                self.conversationRef.observe(.childAdded, with: { (snapshot) in
+                    if let message = Message(snapshot: snapshot) {
+                        self.onMessageReceived(.success(r: message))
+                    }
+                }, withCancel: { (error) in
+                    self.onMessageReceived(.error(e:error))
+                })
             }
-        }, withCancel: { (error) in
-            self.onMessageReceived(.error(e:error))
-        })
+        }
+        
+    }
+    
+    deinit {
+        timer.invalidate()
     }
     
     func send(msg:Message) {
-        ref.child("messages").childByAutoId().setValue(msg.anyObject)
+        self.conversationRef.childByAutoId().setValue(msg.anyObject)
+    }
+    
+    @objc func fakeMessage(){
+        let message = Message(id: "",
+                              seq: "",
+                              text: randomString(length: 10),
+                              mediaType:.none,
+                              mediaUrl: nil,
+                              metadata: [:],
+                              channelUuid: "",
+                              contactUrn: "",
+                              contactUuid: "",
+                              channelAddress: "")
+        onMessageReceived(.success(r: message))
+        timer.invalidate()
+        timer = Timer.scheduledTimer(timeInterval: CDouble(arc4random_uniform(10)), target: self, selector: #selector(fakeMessage), userInfo: nil, repeats: false)
     }
 }
 

@@ -13,7 +13,8 @@ final class MessagesViewController: JSQMessagesViewController, UIImagePickerCont
 
     var quickReplyView: UIView!
     let chatModel = ChatModel()
-    lazy var messageService = FRService()
+    var viewModel: MessageViewModel!
+    
     lazy var quickReplyConfigurator = QuickReplyConfigurator()
     let imagePickerController = UIImagePickerController();
     var quickReplyButtons:[QuickReply] {
@@ -30,9 +31,7 @@ final class MessagesViewController: JSQMessagesViewController, UIImagePickerCont
         imagePickerController.sourceType = .photoLibrary
         imagePickerController.modalPresentationStyle = .custom;
         configureQuickReply()
-        messageService.onMessageReceived = { message in
-
-        }
+        viewModel = MessageViewModel(delegate: self)
     }
 
     override var senderId: String! {
@@ -149,19 +148,9 @@ final class MessagesViewController: JSQMessagesViewController, UIImagePickerCont
 //                }
 //            }
 //        }
+        viewModel.send(message: text)
 
-
-       let message = Message(id: "",
-                              seq: "",
-                              text: text,
-                              mediaType:.none,
-                              mediaUrl: nil,
-                              metadata: [:],
-                              channelUuid: "",
-                              contactUrn: "",
-                              contactUuid: "",
-                              channelAddress: "")
-        messageService.send(msg: message)
+       
         //TODO:Place JSQMessage unwrapping into Message extension
         chatModel.messages.append(JSQMessage(senderId: userID, senderDisplayName: userID, date: Date.distantPast, text: text))
         self.finishSendingMessage()
@@ -207,5 +196,18 @@ final class MessagesViewController: JSQMessagesViewController, UIImagePickerCont
     }
 
 
+}
+
+extension MessagesViewController: AlertRenderer { }
+
+extension MessagesViewController: MessageViewModelDelegate {
+    
+    func didReceive(message: Message) {
+        
+    }
+    
+    func didReceive(error: Error) {
+        displayError(error)
+    }
 }
 
