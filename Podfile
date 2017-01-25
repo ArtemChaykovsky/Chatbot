@@ -14,5 +14,6 @@ pod 'FirebaseUI/Google'
 pod 'Firebase/Core'
 pod 'Firebase/Messaging'
 pod 'SwiftWebSocket'
+pod 'SnapKit', '~> 3.1.2'
 
 end

@@ -8,17 +8,23 @@
 
 import UIKit
 import JSQMessagesViewController
+import SnapKit
+//import PARTagPicker
 
 final class MessagesViewController: JSQMessagesViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    var quickReplyView: UIView!
+    var quickReplyViewController: PARTagPickerViewController!
     let chatModel = ChatModel()
     var viewModel: MessageViewModel!
     
     lazy var quickReplyConfigurator = QuickReplyConfigurator()
     let imagePickerController = UIImagePickerController();
-    var quickReplyButtons:[QuickReply] {
-        return [QuickReply.button(text:"Tips"),QuickReply.button(text:"Odds"),QuickReply.button(text:"Subscriptions"), QuickReply.button(text:"Human")]
+//    var quickReplyButtons:[QuickReply] {
+//        return [QuickReply.button(text:"Tips"),QuickReply.button(text:"Odds"),QuickReply.button(text:"Subscriptions"), QuickReply.button(text:"Human")]
+//    }
+
+    var quickReplyButtons:NSMutableArray {
+        return ["Tips","Odds","Subscriptions","Human","Tips","Odds","Subscriptions","Human","Tips","Odds","Subscriptions"]
     }
 
     override func viewDidLoad() {
@@ -32,6 +38,7 @@ final class MessagesViewController: JSQMessagesViewController, UIImagePickerCont
         imagePickerController.modalPresentationStyle = .custom;
         configureQuickReply()
         viewModel = MessageViewModel(delegate: self)
+        
     }
 
     override var senderId: String! {
@@ -55,61 +62,25 @@ final class MessagesViewController: JSQMessagesViewController, UIImagePickerCont
 
     func configureQuickReply() {
 
-        collectionView.collectionViewLayout.sectionInset = UIEdgeInsetsMake(10, 10, 70, 10)
-        collectionView.backgroundColor = UIColor(red: 244/255.0, green: 244/255.0, blue: 244/255.0, alpha: 1)
 
-        quickReplyView = UIView(frame: CGRect(x: 0, y: view.frame.size.height-140, width: view.frame.size.width, height: 60))
-        quickReplyView.backgroundColor = UIColor(red: 244/255.0, green: 244/255.0, blue: 244/255.0, alpha: 1)
-
-        let tips = UIButton(frame: CGRect(x: 10, y: 10, width: 60, height: 30))
-        tips.setTitleColor(UIColor(red: 96/255.0, green: 143/255.0, blue: 191/255.0, alpha: 1), for: .normal)
-        tips.setTitle("Tips", for: .normal)
-        tips.layer.borderWidth = 1
-        tips.layer.borderColor = UIColor(red: 96/255.0, green: 143/255.0, blue: 191/255.0, alpha: 1).cgColor
-        tips.layer.cornerRadius = 15
-        tips.addTarget(self, action: #selector(tipsButtonPressed),for:.touchUpInside)
-
-        let odds = UIButton(frame: CGRect(x: 80, y: 10, width: 75, height: 30))
-        odds.setTitleColor(UIColor(red: 96/255.0, green: 143/255.0, blue: 191/255.0, alpha: 1), for: .normal)
-        odds.setTitle("Odds", for: .normal)
-        odds.layer.borderWidth = 1
-        odds.layer.borderColor = UIColor(red: 96/255.0, green: 143/255.0, blue: 191/255.0, alpha: 1).cgColor
-        odds.layer.cornerRadius = 15
-        odds.addTarget(self, action: #selector(oddsButtonPressed),for:.touchUpInside)
-
-        let subscroptions = UIButton(frame: CGRect(x: 165, y: 10, width: 125, height: 30))
-        subscroptions.setTitleColor(UIColor(red: 96/255.0, green: 143/255.0, blue: 191/255.0, alpha: 1), for: .normal)
-        subscroptions.setTitle("Subscriptions", for: .normal)
-        subscroptions.layer.borderWidth = 1
-        subscroptions.layer.borderColor = UIColor(red: 96/255.0, green: 143/255.0, blue: 191/255.0, alpha: 1).cgColor
-        subscroptions.layer.cornerRadius = 15
-
-        let human = UIButton(frame: CGRect(x: 300, y: 10, width: 70, height: 30))
-        human.setTitleColor(UIColor(red: 96/255.0, green: 143/255.0, blue: 191/255.0, alpha: 1), for: .normal)
-        human.setTitle("Human", for: .normal)
-        human.layer.borderWidth = 1
-        human.layer.borderColor = UIColor(red: 96/255.0, green: 143/255.0, blue: 191/255.0, alpha: 1).cgColor
-        human.layer.cornerRadius = 15
-
-        quickReplyView.addSubview(tips)
-        quickReplyView.addSubview(odds)
-        quickReplyView.addSubview(subscroptions)
-        quickReplyView.addSubview(human)
-
-        quickReplyView.translatesAutoresizingMaskIntoConstraints = false
-        let trailing = NSLayoutConstraint(item: quickReplyView, attribute: .trailing, relatedBy: .equal, toItem:view, attribute: .trailing, multiplier: 1.0, constant: 0)
-        let leading = NSLayoutConstraint(item: quickReplyView, attribute: .leading, relatedBy: .equal, toItem:view, attribute: .leading, multiplier: 1.0, constant: 0)
-        let bottom = NSLayoutConstraint(item: quickReplyView, attribute: .bottom, relatedBy: .equal, toItem:inputToolbar, attribute: .top, multiplier: 1.0, constant: 0)
-        let width = NSLayoutConstraint(item: quickReplyView, attribute: .width, relatedBy: .equal, toItem: view, attribute: .width, multiplier: 1, constant: 0)
-        let height = NSLayoutConstraint(item: quickReplyView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 50)
-
-        view.addSubview(quickReplyView)
-        view.addConstraints([trailing,leading,bottom,width,height])
-
-       // let quickReplyView = quickReplyConfigurator.configureQuickReplyView(buttons:quickReplyButtons)
-
-        for button in quickReplyButtons {
-            addButtonToQuickReply(title:button.text)
+        quickReplyViewController = PARTagPickerViewController()
+        quickReplyViewController.view.backgroundColor = UIColor.white
+       // quickReplyViewController.view.frame = CGRect(x: 0, y: view.frame.size.height-140, width: view.frame.size.width, height: 90)
+        quickReplyViewController.view.autoresizingMask = .flexibleWidth
+        quickReplyViewController.delegate = self
+        quickReplyViewController.chosenTags = quickReplyButtons
+        quickReplyViewController.visibilityState = .topAndBottom
+        quickReplyViewController.textfieldEnabled = false
+        quickReplyViewController.tagColorRef.chosenTagBackgroundColor = UIColor.white
+        quickReplyViewController.tagColorRef.chosenTagBorderColor = UIColor(red: 96/255.0, green: 143/255.0, blue: 191/255.0, alpha: 1)
+        quickReplyViewController.tagColorRef.chosenTagTextColor = UIColor(red: 96/255.0, green: 143/255.0, blue: 191/255.0, alpha: 1)
+        addChildViewController(quickReplyViewController)
+        view.addSubview(quickReplyViewController.view)
+        quickReplyViewController.view.snp.makeConstraints { (make) in
+            make.bottom.equalTo(inputToolbar.snp.top)
+            make.left.equalTo(view.snp.left)
+            make.right.equalTo(view.snp.right)
+            make.height.equalTo(55)
         }
     }
 
@@ -194,8 +165,12 @@ final class MessagesViewController: JSQMessagesViewController, UIImagePickerCont
         chatModel.messages.append(JSQMessage(senderId: userID, senderDisplayName: userID, date: Date.distantPast, text: "Odds"))
         self.finishSendingMessage()
     }
+}
 
+extension MessagesViewController : PARTagPickerDelegate {
+    func tagPicker(_ tagPicker: PARTagPickerViewController!, visibilityChangedTo state: PARTagPickerVisibilityState) {
 
+    }
 }
 
 extension MessagesViewController: AlertRenderer { }
@@ -203,7 +178,8 @@ extension MessagesViewController: AlertRenderer { }
 extension MessagesViewController: MessageViewModelDelegate {
     
     func didReceive(message: Message) {
-        
+        chatModel.messages.append(JSQMessage(senderId: botID, senderDisplayName: botID, date: Date.distantPast, text:message.text))
+        self.finishSendingMessage()
     }
     
     func didReceive(error: Error) {

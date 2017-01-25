@@ -49,6 +49,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SnapKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SwiftWebSocket.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -57,12 +62,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1E8423B88111D0F478D19C6FE06F90A9</key>
+		<key>44CAD6CE523055ED339E87154473A254</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>44CAD6CE523055ED339E87154473A254</key>
+		<key>4E4F46531537731E7F0D83DBF0DAD00F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -73,6 +78,16 @@
 			<true/>
 		</dict>
 		<key>6D5CEDECD3D8DC52EA507E0431BDA8A0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>89A6C1F84E3206ADC7817B557BDC3DD4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9BC646840B1249BCDC5B45F7330AA5CF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -98,11 +113,6 @@
 			<true/>
 		</dict>
 		<key>D0581AF7BF4A6DA140D280B19ECC7BFF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E0039314D5B0DA73C929A513932A1409</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -153,6 +153,7 @@ final class FRService: Service {
                 })
             }
         }
+        conversationRef = FIRDatabaseReference()
         
     }
     

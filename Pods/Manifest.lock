@@ -92,6 +92,7 @@ PODS:
   - JSQMessagesViewController (7.3.4):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
+  - SnapKit (3.1.2)
   - SwiftWebSocket (2.6.5)
   - TwitterCore (2.8.0):
     - Fabric
@@ -110,6 +111,7 @@ DEPENDENCIES:
   - FirebaseUI/Google
   - FirebaseUI/Twitter
   - JSQMessagesViewController (~> 7.3)
+  - SnapKit (~> 3.1.2)
   - SwiftWebSocket
 
 SPEC CHECKSUMS:
@@ -134,10 +136,11 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 6f8d8b28b7e345549ac471071608170b31cb4977
   JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
+  SnapKit: 12b24f569cb7c143acc9c22b9d91b23e7b1c84a2
   SwiftWebSocket: 1ef8a0efb023544643bdf480c1ec4a62b204f293
   TwitterCore: e959987be23c767004d29eb7fab8d85d8585a2e5
   TwitterKit: f7b0a1adcb800f6446ff0ef70164797376522ff3
 
-PODFILE CHECKSUM: 2d7f3eea0c243add21d690156cdc089b707d7fb0
+PODFILE CHECKSUM: 5ac2749f09bd8fa7adab8a6ff1768af0c4e0c5a9
 
 COCOAPODS: 1.1.1

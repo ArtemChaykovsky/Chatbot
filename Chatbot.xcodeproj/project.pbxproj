@@ -11,6 +11,16 @@
 		346438CD1E37A5700007DF36 /* MessagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346438CC1E37A5700007DF36 /* MessagesViewModel.swift */; };
 		346438CF1E37A7400007DF36 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346438CE1E37A7400007DF36 /* Helpers.swift */; };
 		B19D36341E378A85006BD3DA /* QuickReplyConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19D36331E378A85006BD3DA /* QuickReplyConfigurator.swift */; };
+		B19D36391E37BD70006BD3DA /* PARTagPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B19D36381E37BD70006BD3DA /* PARTagPickerViewController.m */; };
+		B19D363B1E37BD8D006BD3DA /* PARTagPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B19D363A1E37BD8D006BD3DA /* PARTagPickerViewController.xib */; };
+		B19D36451E37BDD6006BD3DA /* PARBackspaceTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = B19D363E1E37BDD6006BD3DA /* PARBackspaceTextField.m */; };
+		B19D36461E37BDD6006BD3DA /* PARTagCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B19D36401E37BDD6006BD3DA /* PARTagCollectionViewCell.m */; };
+		B19D36471E37BDD6006BD3DA /* PARTagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B19D36411E37BDD6006BD3DA /* PARTagCollectionViewCell.xib */; };
+		B19D36481E37BDD6006BD3DA /* PARTextFieldCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B19D36431E37BDD6006BD3DA /* PARTextFieldCollectionViewCell.m */; };
+		B19D36491E37BDD6006BD3DA /* PARTextFieldCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B19D36441E37BDD6006BD3DA /* PARTextFieldCollectionViewCell.xib */; };
+		B19D364E1E37BE17006BD3DA /* PARTagColorReference.m in Sources */ = {isa = PBXBuildFile; fileRef = B19D364D1E37BE17006BD3DA /* PARTagColorReference.m */; };
+		B19D36541E37BE3D006BD3DA /* NSString+PARStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = B19D36511E37BE3D006BD3DA /* NSString+PARStrings.m */; };
+		B19D36551E37BE3D006BD3DA /* UIView+NibInitable.m in Sources */ = {isa = PBXBuildFile; fileRef = B19D36531E37BE3D006BD3DA /* UIView+NibInitable.m */; };
 		B1CD80601E36600C006CF685 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CD805F1E36600C006CF685 /* AppDelegate.swift */; };
 		B1CD80621E36600C006CF685 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CD80611E36600C006CF685 /* MessagesViewController.swift */; };
 		B1CD80651E36600C006CF685 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1CD80631E36600C006CF685 /* Main.storyboard */; };
@@ -27,6 +37,24 @@
 		7880071F1E5287457651AEDE /* Pods-Chatbot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chatbot.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chatbot/Pods-Chatbot.debug.xcconfig"; sourceTree = "<group>"; };
 		83CEB8A7D521827C83EF604B /* Pods_Chatbot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chatbot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B19D36331E378A85006BD3DA /* QuickReplyConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuickReplyConfigurator.swift; path = ChatModel/QuickReplyConfigurator.swift; sourceTree = "<group>"; };
+		B19D36361E37BD6F006BD3DA /* Chatbot-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Chatbot-Bridging-Header.h"; sourceTree = "<group>"; };
+		B19D36371E37BD70006BD3DA /* PARTagPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PARTagPickerViewController.h; sourceTree = "<group>"; };
+		B19D36381E37BD70006BD3DA /* PARTagPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PARTagPickerViewController.m; sourceTree = "<group>"; };
+		B19D363A1E37BD8D006BD3DA /* PARTagPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PARTagPickerViewController.xib; sourceTree = "<group>"; };
+		B19D363D1E37BDD6006BD3DA /* PARBackspaceTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PARBackspaceTextField.h; sourceTree = "<group>"; };
+		B19D363E1E37BDD6006BD3DA /* PARBackspaceTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PARBackspaceTextField.m; sourceTree = "<group>"; };
+		B19D363F1E37BDD6006BD3DA /* PARTagCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PARTagCollectionViewCell.h; sourceTree = "<group>"; };
+		B19D36401E37BDD6006BD3DA /* PARTagCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PARTagCollectionViewCell.m; sourceTree = "<group>"; };
+		B19D36411E37BDD6006BD3DA /* PARTagCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PARTagCollectionViewCell.xib; sourceTree = "<group>"; };
+		B19D36421E37BDD6006BD3DA /* PARTextFieldCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PARTextFieldCollectionViewCell.h; sourceTree = "<group>"; };
+		B19D36431E37BDD6006BD3DA /* PARTextFieldCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PARTextFieldCollectionViewCell.m; sourceTree = "<group>"; };
+		B19D36441E37BDD6006BD3DA /* PARTextFieldCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PARTextFieldCollectionViewCell.xib; sourceTree = "<group>"; };
+		B19D364C1E37BE17006BD3DA /* PARTagColorReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PARTagColorReference.h; sourceTree = "<group>"; };
+		B19D364D1E37BE17006BD3DA /* PARTagColorReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PARTagColorReference.m; sourceTree = "<group>"; };
+		B19D36501E37BE3D006BD3DA /* NSString+PARStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PARStrings.h"; sourceTree = "<group>"; };
+		B19D36511E37BE3D006BD3DA /* NSString+PARStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PARStrings.m"; sourceTree = "<group>"; };
+		B19D36521E37BE3D006BD3DA /* UIView+NibInitable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+NibInitable.h"; sourceTree = "<group>"; };
+		B19D36531E37BE3D006BD3DA /* UIView+NibInitable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+NibInitable.m"; sourceTree = "<group>"; };
 		B1CD805C1E36600C006CF685 /* Chatbot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chatbot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1CD805F1E36600C006CF685 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1CD80611E36600C006CF685 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +97,62 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B19D36351E37BD22006BD3DA /* PARTagPicker */ = {
+			isa = PBXGroup;
+			children = (
+				B19D364F1E37BE2A006BD3DA /* Categories */,
+				B19D364B1E37BE09006BD3DA /* Custom objects */,
+				B19D363C1E37BD9B006BD3DA /* Views */,
+				B19D36371E37BD70006BD3DA /* PARTagPickerViewController.h */,
+				B19D36381E37BD70006BD3DA /* PARTagPickerViewController.m */,
+				B19D363A1E37BD8D006BD3DA /* PARTagPickerViewController.xib */,
+			);
+			name = PARTagPicker;
+			sourceTree = "<group>";
+		};
+		B19D363C1E37BD9B006BD3DA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B19D363D1E37BDD6006BD3DA /* PARBackspaceTextField.h */,
+				B19D363E1E37BDD6006BD3DA /* PARBackspaceTextField.m */,
+				B19D363F1E37BDD6006BD3DA /* PARTagCollectionViewCell.h */,
+				B19D36401E37BDD6006BD3DA /* PARTagCollectionViewCell.m */,
+				B19D36411E37BDD6006BD3DA /* PARTagCollectionViewCell.xib */,
+				B19D36421E37BDD6006BD3DA /* PARTextFieldCollectionViewCell.h */,
+				B19D36431E37BDD6006BD3DA /* PARTextFieldCollectionViewCell.m */,
+				B19D36441E37BDD6006BD3DA /* PARTextFieldCollectionViewCell.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		B19D364B1E37BE09006BD3DA /* Custom objects */ = {
+			isa = PBXGroup;
+			children = (
+				B19D364C1E37BE17006BD3DA /* PARTagColorReference.h */,
+				B19D364D1E37BE17006BD3DA /* PARTagColorReference.m */,
+			);
+			name = "Custom objects";
+			sourceTree = "<group>";
+		};
+		B19D364F1E37BE2A006BD3DA /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				B19D36501E37BE3D006BD3DA /* NSString+PARStrings.h */,
+				B19D36511E37BE3D006BD3DA /* NSString+PARStrings.m */,
+				B19D36521E37BE3D006BD3DA /* UIView+NibInitable.h */,
+				B19D36531E37BE3D006BD3DA /* UIView+NibInitable.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		B19D36561E37C5CD006BD3DA /* Supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				B19D36361E37BD6F006BD3DA /* Chatbot-Bridging-Header.h */,
+			);
+			name = "Supporting files";
+			sourceTree = "<group>";
+		};
 		B1CD80531E36600C006CF685 = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +176,7 @@
 			children = (
 				B1CD807A1E37538F006CF685 /* GoogleService-Info.plist */,
 				B1CD80711E366919006CF685 /* ChatModel */,
+				B19D36351E37BD22006BD3DA /* PARTagPicker */,
 				B1CD805F1E36600C006CF685 /* AppDelegate.swift */,
 				B1CD80611E36600C006CF685 /* MessagesViewController.swift */,
 				B1CD80631E36600C006CF685 /* Main.storyboard */,
@@ -100,6 +185,7 @@
 				B1CD806B1E36600C006CF685 /* Info.plist */,
 				346438CC1E37A5700007DF36 /* MessagesViewModel.swift */,
 				346438CE1E37A7400007DF36 /* Helpers.swift */,
+				B19D36561E37C5CD006BD3DA /* Supporting files */,
 			);
 			path = Chatbot;
 			sourceTree = "<group>";
@@ -177,10 +263,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B19D363B1E37BD8D006BD3DA /* PARTagPickerViewController.xib in Resources */,
 				B1CD806A1E36600C006CF685 /* LaunchScreen.storyboard in Resources */,
+				B19D36491E37BDD6006BD3DA /* PARTextFieldCollectionViewCell.xib in Resources */,
 				B1CD807B1E37538F006CF685 /* GoogleService-Info.plist in Resources */,
 				B1CD80671E36600C006CF685 /* Assets.xcassets in Resources */,
 				B1CD80651E36600C006CF685 /* Main.storyboard in Resources */,
+				B19D36471E37BDD6006BD3DA /* PARTagCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,12 +329,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				346438CD1E37A5700007DF36 /* MessagesViewModel.swift in Sources */,
+				B19D36461E37BDD6006BD3DA /* PARTagCollectionViewCell.m in Sources */,
+				B19D364E1E37BE17006BD3DA /* PARTagColorReference.m in Sources */,
+				B19D36541E37BE3D006BD3DA /* NSString+PARStrings.m in Sources */,
 				346438CF1E37A7400007DF36 /* Helpers.swift in Sources */,
 				B19D36341E378A85006BD3DA /* QuickReplyConfigurator.swift in Sources */,
+				B19D36551E37BE3D006BD3DA /* UIView+NibInitable.m in Sources */,
+				B19D36391E37BD70006BD3DA /* PARTagPickerViewController.m in Sources */,
+				B19D36481E37BDD6006BD3DA /* PARTextFieldCollectionViewCell.m in Sources */,
 				B1CD80791E374A81006CF685 /* MessagingService.swift in Sources */,
 				B1CD80621E36600C006CF685 /* MessagesViewController.swift in Sources */,
 				B1CD80601E36600C006CF685 /* AppDelegate.swift in Sources */,
 				B1CD80731E366945006CF685 /* ChatModel.swift in Sources */,
+				B19D36451E37BDD6006BD3DA /* PARBackspaceTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,7 +468,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.onix.Chatbot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Chatbot/Chatbot-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -388,7 +484,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.onix.Chatbot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Chatbot/Chatbot-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

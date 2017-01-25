@@ -30,12 +30,6 @@ final class ChatModel: NSObject {
     }
     func loadFakeMessages() {
 
-//        JSQPhotoMediaItem *photoItem = [[JSQPhotoMediaItem alloc] initWithImage:[UIImage imageNamed:@"goldengate"]];
-//        JSQMessage *photoMessage = [JSQMessage messageWithSenderId:kJSQDemoAvatarIdSquires
-//            displayName:kJSQDemoAvatarDisplayNameSquires
-//            media:photoItem];
-//        [self.messages addObject:photoMessage];
-
         let photoItem = JSQPhotoMediaItem(image: UIImage(named:"goldengate"))
         photoItem!.appliesMediaViewMaskAsOutgoing = false
         let photoMessage = JSQMessage(senderId: botID, displayName: botID, media:photoItem)
