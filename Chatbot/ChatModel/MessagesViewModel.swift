@@ -28,7 +28,7 @@ final class MessageViewModel {
             }
         }
         //disable in production
-        messageService.demoMode = true
+       // messageService.demoMode = true
     }
     
     func send(message text:String){
