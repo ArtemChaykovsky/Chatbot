@@ -12,10 +12,13 @@ import SnapKit
 import MobileCoreServices
 
 enum QuickReply{
+    case buttonWithImage(text: String,image:UIImage)
     case button(text: String)
     var text: String {
         switch self {
         case .button(text:let text):
+            return text
+        case .buttonWithImage(text: let text, image: _):
             return text
         }
     }
@@ -49,11 +52,11 @@ final class MessagesViewController: JSQMessagesViewController, UIImagePickerCont
       // inputToolbar.contentView.leftBarButtonItemWidth
         inputToolbar.contentView.backgroundColor = UIColor.white
         inputToolbar.contentView.textView.placeHolder = "Your message"
+        inputToolbar.contentView.textView.autocorrectionType = .no;
         inputToolbar.contentView.textView.layer.borderWidth = 0;
         inputToolbar.contentView.rightBarButtonItem.setTitle("SEND", for: .normal)
         inputToolbar.contentView.rightBarButtonItem.setTitleColor(UIColor.black, for: .normal)
         inputToolbar.contentView.rightBarButtonItemWidth = 60
-        addSeparator()
     }
 
     override var prefersStatusBarHidden: Bool {
@@ -85,16 +88,10 @@ final class MessagesViewController: JSQMessagesViewController, UIImagePickerCont
     func configureChatCollectionView() {
         collectionView.backgroundColor = UIColor.chatBackgroundColor()
        // collectionView.collectionViewLayout.incomingAvatarViewSize = CGSize(width: 40, height: 40)
-        collectionView.collectionViewLayout.sectionInset = UIEdgeInsetsMake(10, 5, 10, 0)
+        collectionView.collectionViewLayout.sectionInset = UIEdgeInsetsMake(10, 5, 10, -15)
         collectionView.typingIndicatorDisplaysOnLeft = true
-        collectionView.collectionViewLayout.minimumLineSpacing = 10
+        collectionView.collectionViewLayout.minimumLineSpacing = CollectionViewDefaultSpacing
         collectionView.reloadData()
-    }
-
-    func addSeparator() {
-        let sepatarator = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 0.5))
-        sepatarator.backgroundColor = UIColor.customPlaceholderColor()
-        inputToolbar.contentView.addSubview(sepatarator)
     }
 
     func configureQuickReply() {
@@ -105,7 +102,7 @@ final class MessagesViewController: JSQMessagesViewController, UIImagePickerCont
         quickReplyView.isHidden = true
         view.addSubview(quickReplyView)
         quickReplyView.snp.makeConstraints { (make) in
-            make.bottom.equalTo(inputToolbar.snp.top).offset(-1)
+            make.bottom.equalTo(inputToolbar.snp.top).offset(-0.3)
             make.left.equalTo(view.snp.left)
             make.right.equalTo(view.snp.right)
             make.height.equalTo(QuickReplyViewHeight)
@@ -113,9 +110,10 @@ final class MessagesViewController: JSQMessagesViewController, UIImagePickerCont
     }
 
     func showQuickReplyViewWithItems(items: [QuickReply]) {
-        collectionViewLayout.items = [QuickReply.button(text:"Tips"),QuickReply.button(text:"Odds"),QuickReply.button(text:"Odds"),QuickReply.button(text:"Odds"),QuickReply.button(text:"Odds"),QuickReply.button(text:"Odds"),QuickReply.button(text:"Tips"),QuickReply.button(text:"Tips"),QuickReply.button(text:"Tips")]
+   //     collectionViewLayout.items = [QuickReply.button(text:"Tips"),QuickReply.button(text:"Odds"),QuickReply.button(text:"Odds"),QuickReply.button(text:"Odds"),QuickReply.button(text:"Odds"),QuickReply.button(text:"Odds"),QuickReply.button(text:"Tips"),QuickReply.button(text:"Tips"),QuickReply.button(text:"Tips")]
+        collectionViewLayout.items = [QuickReply.button(text: "Odds"),QuickReply.buttonWithImage(text: "Odds", image: UIImage(named: "odds")!),QuickReply.button(text: "Odds"),QuickReply.buttonWithImage(text: "Odds", image: UIImage(named: "odds")!)]
         quickReplyView.reloadData()
-        collectionView.collectionViewLayout.sectionInset = UIEdgeInsetsMake(10, 5, QuickReplyViewHeight+10, 5)
+        collectionView.collectionViewLayout.sectionInset = UIEdgeInsetsMake(10, 5, QuickReplyViewHeight+5, 5)
         collectionView.collectionViewLayout.invalidateLayout()
 //        collectionView.layoutIfNeeded()
         collectionView.reloadData()
@@ -125,7 +123,7 @@ final class MessagesViewController: JSQMessagesViewController, UIImagePickerCont
 
     func hideQuickReplyView() {
         quickReplyView.isHidden = true
-        collectionView.collectionViewLayout.sectionInset = UIEdgeInsetsMake(10, 5, 10, 9)
+        collectionView.collectionViewLayout.sectionInset = UIEdgeInsetsMake(10, 5, 10, -15)
         collectionView.collectionViewLayout.invalidateLayout()
         collectionView.reloadData()
         scrollToBottom(animated: false)
@@ -163,8 +161,7 @@ final class MessagesViewController: JSQMessagesViewController, UIImagePickerCont
 //        //TODO:Place JSQMessage unwrapping into Message extension
 //        chatModel.messages.append(JSQMessage(senderId: userID, senderDisplayName: userID, date: Date.distantPast, text: text))
 //        self.finishSendingMessage()
-   //     collectionView.collectionViewLayout.sectionInset = UIEdgeInsetsMake(25, 20, QuickReplyViewHeight+10, 20)
-    //    collectionView.layoutIfNeeded()
+
         showQuickReplyViewWithItems(items: [])
 
     }

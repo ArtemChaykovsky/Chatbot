@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B1CD805B1E36600C006CF685"
-               BuildableName = "Chatbot.app"
-               BlueprintName = "Chatbot"
-               ReferencedContainer = "container:Chatbot.xcodeproj">
+               BuildableName = "TipTap.app"
+               BlueprintName = "TipTap"
+               ReferencedContainer = "container:TipTap.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B1CD805B1E36600C006CF685"
-            BuildableName = "Chatbot.app"
-            BlueprintName = "Chatbot"
-            ReferencedContainer = "container:Chatbot.xcodeproj">
+            BuildableName = "TipTap.app"
+            BlueprintName = "TipTap"
+            ReferencedContainer = "container:TipTap.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B1CD805B1E36600C006CF685"
-            BuildableName = "Chatbot.app"
-            BlueprintName = "Chatbot"
-            ReferencedContainer = "container:Chatbot.xcodeproj">
+            BuildableName = "TipTap.app"
+            BlueprintName = "TipTap"
+            ReferencedContainer = "container:TipTap.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -75,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B1CD805B1E36600C006CF685"
-            BuildableName = "Chatbot.app"
-            BlueprintName = "Chatbot"
-            ReferencedContainer = "container:Chatbot.xcodeproj">
+            BuildableName = "TipTap.app"
+            BlueprintName = "TipTap"
+            ReferencedContainer = "container:TipTap.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

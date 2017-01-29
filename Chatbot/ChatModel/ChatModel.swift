@@ -9,8 +9,8 @@
 import UIKit
 import JSQMessagesViewController
 
-let userID   = "053496-4509-289"
-let botID    = "468-768355-23123"
+let userID   = "userID"
+let botID    = "botID"
 let userName = "Username"
 let kJSQMessagesCollectionViewAvatarSizeDefault = UInt(30)
 
@@ -40,10 +40,6 @@ final class ChatModel: NSObject {
         messages.append(JSQMessage(senderId: botID, senderDisplayName: userID, date: Date.distantPast, text: "You're all caught up for today!\nI can give you tips and odds for all of todays races. Just let me know what you need."))
         self.incomingBubbleImageData = bubbleFactory?.incomingMessagesBubbleImage(with: UIColor(red: 96.0/255.0, green: 143.0/255.0, blue: 191.0/255.0, alpha: 1.0))
         self.outgoingBubbleImageData = bubbleFactory?.outgoingMessagesBubbleImage(with: UIColor.customGreyColor())
-        let botAvatar = JSQMessagesAvatarImageFactory.avatarImage(with: UIImage(named:"BotImage"), diameter:kJSQMessagesCollectionViewAvatarSizeDefault)
-        if let unwrappedImage = botAvatar {
-        avatars = [botID : unwrappedImage]
-        }
     }
 
     func addPhotoMediaMessage(image:UIImage) {

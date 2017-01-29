@@ -8,9 +8,10 @@
 
 import UIKit
 
-let QuickReplyViewHeight: CGFloat          = 63
+let QuickReplyViewHeight: CGFloat          = 65
 let QuickReplyCellFontSize: CGFloat        = 13
 let CollectionViewDefaultInset: CGFloat    = 40
+let CollectionViewDefaultSpacing: CGFloat    = 10
 let QuickReplyCellReuseIdentifier          = "QuickReplyCellReuseIdentifier"
 
 
@@ -39,7 +40,15 @@ extension QuickReplyCollectionViewLayout: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let item = items[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: QuickReplyCellReuseIdentifier, for: indexPath) as! QuickReplyCell
-        cell.titleLabel.text = item.text
+        switch item {
+        case .button(text: let text):
+            cell.setData(title: text, image: nil)
+            break
+        case .buttonWithImage(text: let text, image: let image):
+            cell.setData(title: text, image: image)
+            break
+        }
+
         return cell
     }
 }
@@ -54,7 +63,16 @@ extension QuickReplyCollectionViewLayout: UICollectionViewDelegateFlowLayout {
         let item = items[indexPath.row]
         sizingCell.titleLabel.text = item.text
         sizingCell.titleLabel.font = UIFont.systemFont(ofSize: QuickReplyCellFontSize)
-        let size = sizingCell.systemLayoutSizeFitting(CGSize(width: collectionView.contentSize.width, height:QuickReplyViewHeight-20), withHorizontalFittingPriority: UILayoutPriorityDefaultLow, verticalFittingPriority: UILayoutPriorityDefaultHigh)
+        var size = sizingCell.systemLayoutSizeFitting(CGSize(width: collectionView.contentSize.width, height:QuickReplyViewHeight-24), withHorizontalFittingPriority: UILayoutPriorityDefaultLow, verticalFittingPriority: UILayoutPriorityDefaultHigh)
+
+        switch item {
+        case .buttonWithImage(text: _, image: _):
+            size.width += 30
+            break
+        default:
+            break
+        }
+
         collectionViewCustomInset += size.width
         return size
     }
@@ -65,7 +83,7 @@ extension QuickReplyCollectionViewLayout: UICollectionViewDelegateFlowLayout {
 
             collectionView.contentOffset = CGPoint.zero
             if items.count > 1 {
-                let insets: CGFloat = CGFloat(items.count-1)*10
+                let insets: CGFloat = CGFloat(items.count-1)*CollectionViewDefaultSpacing
                 collectionViewCustomInset += (insets)
             }
 
@@ -76,7 +94,7 @@ extension QuickReplyCollectionViewLayout: UICollectionViewDelegateFlowLayout {
 
             let offset = collectionViewWidth - collectionViewCustomInset
             collectionView.isScrollEnabled = false
-            return UIEdgeInsets(top: 0, left: offset/2, bottom: 0, right: offset/2)
+            return UIEdgeInsets(top: 0, left: offset/2, bottom: 0, right: 0)
             }
 
     }
@@ -100,6 +118,6 @@ extension UIColor {
         return UIColor(red: 244/255.0, green: 244/255.0, blue: 244/255.0, alpha: 1)
     }
     class func customPlaceholderColor() -> UIColor {
-        return UIColor(red: 253/255.0, green: 253/255.0, blue: 253/255.0, alpha: 1)
+        return UIColor(red: 228/255.0, green: 228/255.0, blue: 228/255.0, alpha: 1)
     }
 }

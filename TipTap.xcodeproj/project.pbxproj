@@ -31,7 +31,7 @@
 		7880071F1E5287457651AEDE /* Pods-Chatbot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chatbot.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chatbot/Pods-Chatbot.debug.xcconfig"; sourceTree = "<group>"; };
 		83CEB8A7D521827C83EF604B /* Pods_Chatbot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chatbot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B19D36331E378A85006BD3DA /* QuickReplyCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuickReplyCollectionViewLayout.swift; path = ChatModel/QuickReplyCollectionViewLayout.swift; sourceTree = "<group>"; };
-		B1CD805C1E36600C006CF685 /* Chatbot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chatbot.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1CD805C1E36600C006CF685 /* TipTap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TipTap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1CD805F1E36600C006CF685 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1CD80611E36600C006CF685 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		B1CD80641E36600C006CF685 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -88,7 +88,7 @@
 		B1CD80531E36600C006CF685 = {
 			isa = PBXGroup;
 			children = (
-				B1CD805E1E36600C006CF685 /* Chatbot */,
+				B1CD805E1E36600C006CF685 /* TipTap */,
 				B1CD805D1E36600C006CF685 /* Products */,
 				65C480DFF069F6428C73164A /* Pods */,
 				7F318348C5FEE0DD21CB1C27 /* Frameworks */,
@@ -98,12 +98,12 @@
 		B1CD805D1E36600C006CF685 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B1CD805C1E36600C006CF685 /* Chatbot.app */,
+				B1CD805C1E36600C006CF685 /* TipTap.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B1CD805E1E36600C006CF685 /* Chatbot */ = {
+		B1CD805E1E36600C006CF685 /* TipTap */ = {
 			isa = PBXGroup;
 			children = (
 				B1F536481E38AFEF00BA25B9 /* QuickReply */,
@@ -118,6 +118,7 @@
 				346438CE1E37A7400007DF36 /* Helpers.swift */,
 				B19D36561E37C5CD006BD3DA /* Supporting files */,
 			);
+			name = TipTap;
 			path = Chatbot;
 			sourceTree = "<group>";
 		};
@@ -153,9 +154,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B1CD805B1E36600C006CF685 /* Chatbot */ = {
+		B1CD805B1E36600C006CF685 /* TipTap */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B1CD806E1E36600C006CF685 /* Build configuration list for PBXNativeTarget "Chatbot" */;
+			buildConfigurationList = B1CD806E1E36600C006CF685 /* Build configuration list for PBXNativeTarget "TipTap" */;
 			buildPhases = (
 				64B2F8DF9991EC88691710E1 /* [CP] Check Pods Manifest.lock */,
 				B1CD80581E36600C006CF685 /* Sources */,
@@ -168,9 +169,9 @@
 			);
 			dependencies = (
 			);
-			name = Chatbot;
+			name = TipTap;
 			productName = Chatbot;
-			productReference = B1CD805C1E36600C006CF685 /* Chatbot.app */;
+			productReference = B1CD805C1E36600C006CF685 /* TipTap.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -190,7 +191,7 @@
 					};
 				};
 			};
-			buildConfigurationList = B1CD80571E36600C006CF685 /* Build configuration list for PBXProject "Chatbot" */;
+			buildConfigurationList = B1CD80571E36600C006CF685 /* Build configuration list for PBXProject "TipTap" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -203,7 +204,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B1CD805B1E36600C006CF685 /* Chatbot */,
+				B1CD805B1E36600C006CF685 /* TipTap */,
 			);
 		};
 /* End PBXProject section */
@@ -412,7 +413,7 @@
 				INFOPLIST_FILE = Chatbot/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.onix.Chatbot;
+				PRODUCT_BUNDLE_IDENTIFIER = com.onix.ChatBot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -430,7 +431,7 @@
 				INFOPLIST_FILE = Chatbot/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.onix.Chatbot;
+				PRODUCT_BUNDLE_IDENTIFIER = com.onix.ChatBot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
@@ -440,7 +441,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B1CD80571E36600C006CF685 /* Build configuration list for PBXProject "Chatbot" */ = {
+		B1CD80571E36600C006CF685 /* Build configuration list for PBXProject "TipTap" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B1CD806C1E36600C006CF685 /* Debug */,
@@ -449,7 +450,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B1CD806E1E36600C006CF685 /* Build configuration list for PBXNativeTarget "Chatbot" */ = {
+		B1CD806E1E36600C006CF685 /* Build configuration list for PBXNativeTarget "TipTap" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B1CD806F1E36600C006CF685 /* Debug */,

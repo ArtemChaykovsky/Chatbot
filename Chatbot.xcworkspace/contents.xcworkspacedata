@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Chatbot.xcodeproj">
+      location = "group:/Users/artemchaykovsky/Projects/Chatbot/TipTap.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
