@@ -8,9 +8,10 @@
 
 import UIKit
 
-let QuickReplyViewHeight: CGFloat = 50
-let QuickReplyCellFontSize: CGFloat = 16
-let QuickReplyCellReuseIdentifier = "QuickReplyCellReuseIdentifier"
+let QuickReplyViewHeight: CGFloat          = 63
+let QuickReplyCellFontSize: CGFloat        = 13
+let CollectionViewDefaultInset: CGFloat    = 40
+let QuickReplyCellReuseIdentifier          = "QuickReplyCellReuseIdentifier"
 
 
 protocol QuickReplyCollectionViewDelegate{
@@ -25,7 +26,8 @@ class QuickReplyCollectionViewLayout: NSObject {
 
     var items:[QuickReply] = []
     var delegate:QuickReplyCollectionViewDelegate?
-
+    var collectionViewCustomInset:CGFloat = 0
+    var collectionViewWidth:CGFloat!
 }
 
 extension QuickReplyCollectionViewLayout: UICollectionViewDataSource {
@@ -45,12 +47,38 @@ extension QuickReplyCollectionViewLayout: UICollectionViewDataSource {
 extension QuickReplyCollectionViewLayout: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if indexPath.row == 0 {
+            collectionViewCustomInset = 0
+        }
         let sizingCell: QuickReplyCell = QuickReplyCell.fromNib()
         let item = items[indexPath.row]
         sizingCell.titleLabel.text = item.text
         sizingCell.titleLabel.font = UIFont.systemFont(ofSize: QuickReplyCellFontSize)
         let size = sizingCell.systemLayoutSizeFitting(CGSize(width: collectionView.contentSize.width, height:QuickReplyViewHeight-20), withHorizontalFittingPriority: UILayoutPriorityDefaultLow, verticalFittingPriority: UILayoutPriorityDefaultHigh)
+        collectionViewCustomInset += size.width
         return size
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+
+      //  if (collectionView.superview!.frame.size.width > collectionViewCustomInset) {
+
+            collectionView.contentOffset = CGPoint.zero
+            if items.count > 1 {
+                let insets: CGFloat = CGFloat(items.count-1)*10
+                collectionViewCustomInset += (insets)
+            }
+
+        if collectionViewCustomInset > collectionViewWidth-CollectionViewDefaultInset*2 {
+                collectionView.isScrollEnabled = true
+                return UIEdgeInsets(top: 0, left: CollectionViewDefaultInset, bottom: 0, right: CollectionViewDefaultInset)
+            } else{
+
+            let offset = collectionViewWidth - collectionViewCustomInset
+            collectionView.isScrollEnabled = false
+            return UIEdgeInsets(top: 0, left: offset/2, bottom: 0, right: offset/2)
+            }
+
     }
 }
 
@@ -70,5 +98,8 @@ extension UIColor {
     }
     class func chatBackgroundColor() -> UIColor {
         return UIColor(red: 244/255.0, green: 244/255.0, blue: 244/255.0, alpha: 1)
+    }
+    class func customPlaceholderColor() -> UIColor {
+        return UIColor(red: 253/255.0, green: 253/255.0, blue: 253/255.0, alpha: 1)
     }
 }

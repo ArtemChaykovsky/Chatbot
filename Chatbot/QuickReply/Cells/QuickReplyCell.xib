@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -24,17 +25,28 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="trU-1j-aBQ">
+                        <rect key="frame" x="8" y="6" width="15" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="trU-1j-aBQ" secondAttribute="height" multiplier="1:1" id="bMy-pz-Wxw"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
             </view>
             <constraints>
                 <constraint firstItem="5k9-vj-5oT" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="2dW-mo-w4R"/>
+                <constraint firstItem="trU-1j-aBQ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="L1D-zH-mqi"/>
                 <constraint firstAttribute="trailing" secondItem="5k9-vj-5oT" secondAttribute="trailing" constant="15" id="OJO-Y2-0Xx"/>
                 <constraint firstAttribute="bottom" secondItem="5k9-vj-5oT" secondAttribute="bottom" id="ciZ-bV-j50"/>
+                <constraint firstAttribute="bottom" secondItem="trU-1j-aBQ" secondAttribute="bottom" constant="6" id="gK0-Xo-SWB"/>
+                <constraint firstItem="trU-1j-aBQ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="6" id="hRi-94-bxx"/>
                 <constraint firstItem="5k9-vj-5oT" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="joF-tU-Tas"/>
             </constraints>
             <size key="customSize" width="100" height="27"/>
             <connections>
+                <outlet property="customImage" destination="trU-1j-aBQ" id="eJQ-U6-uEm"/>
                 <outlet property="titleLabel" destination="5k9-vj-5oT" id="MMZ-vc-sQq"/>
+                <outlet property="titleLabelLeadingConstraint" destination="2dW-mo-w4R" id="ZOb-Y9-zS3"/>
             </connections>
             <point key="canvasLocation" x="49" y="-163.5"/>
         </collectionViewCell>
