@@ -91,6 +91,7 @@ final class MessagesViewController: JSQMessagesViewController, UIImagePickerCont
         collectionView.collectionViewLayout.sectionInset = UIEdgeInsetsMake(10, 5, 10, -15)
         collectionView.typingIndicatorDisplaysOnLeft = true
         collectionView.collectionViewLayout.minimumLineSpacing = CollectionViewDefaultSpacing
+        collectionView.collectionViewLayout.messageBubbleFont = UIFont(name: "MyriadPro-Regular", size: 18)
         collectionView.reloadData()
     }
 

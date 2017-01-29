@@ -10,6 +10,7 @@
 		2905208DC522FD5105F19E64 /* Pods_Chatbot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83CEB8A7D521827C83EF604B /* Pods_Chatbot.framework */; };
 		346438CD1E37A5700007DF36 /* MessagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346438CC1E37A5700007DF36 /* MessagesViewModel.swift */; };
 		346438CF1E37A7400007DF36 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346438CE1E37A7400007DF36 /* Helpers.swift */; };
+		B12F6A401E3E9E0300450E53 /* MyriadProRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B12F6A3F1E3E9C8C00450E53 /* MyriadProRegular.ttf */; };
 		B19D36341E378A85006BD3DA /* QuickReplyCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19D36331E378A85006BD3DA /* QuickReplyCollectionViewLayout.swift */; };
 		B1CD80601E36600C006CF685 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CD805F1E36600C006CF685 /* AppDelegate.swift */; };
 		B1CD80621E36600C006CF685 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CD80611E36600C006CF685 /* MessagesViewController.swift */; };
@@ -30,6 +31,7 @@
 		346438CE1E37A7400007DF36 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		7880071F1E5287457651AEDE /* Pods-Chatbot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chatbot.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chatbot/Pods-Chatbot.debug.xcconfig"; sourceTree = "<group>"; };
 		83CEB8A7D521827C83EF604B /* Pods_Chatbot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chatbot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B12F6A3F1E3E9C8C00450E53 /* MyriadProRegular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = MyriadProRegular.ttf; path = Fonts/MyriadProRegular.ttf; sourceTree = "<group>"; };
 		B19D36331E378A85006BD3DA /* QuickReplyCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuickReplyCollectionViewLayout.swift; path = ChatModel/QuickReplyCollectionViewLayout.swift; sourceTree = "<group>"; };
 		B1CD805C1E36600C006CF685 /* TipTap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TipTap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1CD805F1E36600C006CF685 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -77,9 +79,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B12F6A3B1E3E973900450E53 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				B12F6A3F1E3E9C8C00450E53 /* MyriadProRegular.ttf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
 		B19D36561E37C5CD006BD3DA /* Supporting files */ = {
 			isa = PBXGroup;
 			children = (
+				B12F6A3B1E3E973900450E53 /* Fonts */,
 				B1CD807A1E37538F006CF685 /* GoogleService-Info.plist */,
 			);
 			name = "Supporting files";
@@ -214,6 +225,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B12F6A401E3E9E0300450E53 /* MyriadProRegular.ttf in Resources */,
 				B1F536551E38C3DA00BA25B9 /* QuickReplyCell.xib in Resources */,
 				B1CD806A1E36600C006CF685 /* LaunchScreen.storyboard in Resources */,
 				B1CD807B1E37538F006CF685 /* GoogleService-Info.plist in Resources */,
