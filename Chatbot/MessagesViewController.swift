@@ -11,60 +11,68 @@ import JSQMessagesViewController
 import SnapKit
 import MobileCoreServices
 
-enum QuickReply{
-    case buttonWithImage(text: String,image:UIImage)
-    case button(text: String)
-    var text: String {
-        switch self {
-        case .button(text:let text):
-            return text
-        case .buttonWithImage(text: let text, image: _):
-            return text
-        }
-    }
-}
+//enum QuickReply{
+//
+//    case buttonWithImage(text: String,image:UIImage)
+//    case button(text: String)
+//    var text: String {
+//        switch self {
+//        case .button(text:let text):
+//            return text
+//        case .buttonWithImage(text: let text, image: _):
+//            return text
+//        }
+//    }
+//}
 
-final class MessagesViewController: JSQMessagesViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+final class MessagesViewController: JSQMessagesViewController, UINavigationControllerDelegate {
 
     let quickReplyView: QuickReplyView = QuickReplyView.fromNib()
     let chatModel = ChatModel()
     var viewModel: MessageViewModel!
     var collectionViewLayout:QuickReplyCollectionViewLayout!
-    let imagePickerController = UIImagePickerController();
+    var imagePickerController: UIImagePickerController!
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        viewModel = MessageViewModel(delegate: self)
+    }
 
     override func viewDidLoad() {
 
         super.viewDidLoad()
+
         configureChatCollectionView()
-        imagePickerController.delegate = self
-        imagePickerController.sourceType = .photoLibrary
-        imagePickerController.mediaTypes = [String(kUTTypeImage),String(kUTTypeVideo),String(kUTTypeMovie)]
-        imagePickerController.modalPresentationStyle = .custom;
-        collectionViewLayout = QuickReplyCollectionViewLayout(delegate: self)
         configureQuickReply()
-        viewModel = MessageViewModel(delegate: self)
-        let plusImage = UIImage(named: "plus")
-        let accessoryButton = UIButton(type: .custom)
-       // accessoryButton.setBackgroundImage(plusImage, for: .normal)
-        accessoryButton.setImage(plusImage, for: .normal)
-        accessoryButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        inputToolbar.contentView.leftBarButtonItem = accessoryButton
-      // inputToolbar.contentView.leftBarButtonItemWidth
-        inputToolbar.contentView.backgroundColor = UIColor.white
-        inputToolbar.contentView.textView.placeHolder = "Your message"
-        inputToolbar.contentView.textView.autocorrectionType = .no;
-        inputToolbar.contentView.textView.layer.borderWidth = 0;
-        inputToolbar.contentView.rightBarButtonItem.setTitle("SEND", for: .normal)
-        inputToolbar.contentView.rightBarButtonItem.setTitleColor(UIColor.black, for: .normal)
-        inputToolbar.contentView.rightBarButtonItemWidth = 60
+        configureInputToolbar()
+//        viewModel.messageService.onMessageReceived = { message in
+//            chatModel.messages.append(JSQMessage(senderId: userID, senderDisplayName: userID, date: Date.distantPast, text: item.text))
+//            self.finishSendingMessage()
+//        }x
+
+        
+//        viewModel.messageService.requestFailure = { error in
+//            self.displayError(error)
+//        }
+
+//        viewModel.messageService.getChannel()
+
     }
 
     override var prefersStatusBarHidden: Bool {
         return true
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        collectionViewLayout.collectionViewWidth = self.quickReplyView.frame.size.width
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        showQuickReplyViewWithItems(items: [])
+        showHUD()
+        viewModel.getChannel()
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+         collectionViewLayout.collectionViewWidth = self.quickReplyView.frame.size.width
     }
 
     override var senderId: String! {
@@ -85,17 +93,35 @@ final class MessagesViewController: JSQMessagesViewController, UIImagePickerCont
         }
     }
 
-    func configureChatCollectionView() {
+
+    //MARK: Configure layout
+
+    private func configureChatCollectionView() {
+
+        collectionViewLayout = QuickReplyCollectionViewLayout(delegate: self)
         collectionView.backgroundColor = UIColor.chatBackgroundColor()
-       // collectionView.collectionViewLayout.incomingAvatarViewSize = CGSize(width: 40, height: 40)
-        collectionView.collectionViewLayout.sectionInset = UIEdgeInsetsMake(10, 5, 10, -15)
-        collectionView.typingIndicatorDisplaysOnLeft = true
+        collectionView.collectionViewLayout.sectionInset = UIEdgeInsetsMake(20, 5, 10, -10)
         collectionView.collectionViewLayout.minimumLineSpacing = CollectionViewDefaultSpacing
-        collectionView.collectionViewLayout.messageBubbleFont = UIFont(name: "MyriadPro-Regular", size: 18)
-        collectionView.reloadData()
     }
 
-    func configureQuickReply() {
+    private func configureInputToolbar() {
+
+        let plusImage = UIImage(named: "plus")
+        let accessoryButton = UIButton(type: .custom)
+        accessoryButton.frame.size = CGSize(width: 30, height: 30)
+        accessoryButton.setBackgroundImage(plusImage, for: .normal)
+        inputToolbar.contentView.leftBarButtonItem = accessoryButton
+        inputToolbar.contentView.backgroundColor = UIColor.white
+        inputToolbar.contentView.textView.placeHolder = "Your message"
+        inputToolbar.contentView.textView.autocorrectionType = .no;
+        inputToolbar.contentView.textView.layer.borderWidth = 0;
+        inputToolbar.contentView.rightBarButtonItem.setTitle("SEND", for: .normal)
+        inputToolbar.contentView.rightBarButtonItem.setTitleColor(UIColor.black, for: .normal)
+        inputToolbar.contentView.rightBarButtonItemWidth = 60
+
+    }
+
+    private func configureQuickReply() {
 
         quickReplyView.collectionView.dataSource = collectionViewLayout
         quickReplyView.collectionView.delegate   = collectionViewLayout
@@ -111,24 +137,39 @@ final class MessagesViewController: JSQMessagesViewController, UIImagePickerCont
     }
 
     func showQuickReplyViewWithItems(items: [QuickReply]) {
-   //     collectionViewLayout.items = [QuickReply.button(text:"Tips"),QuickReply.button(text:"Odds"),QuickReply.button(text:"Odds"),QuickReply.button(text:"Odds"),QuickReply.button(text:"Odds"),QuickReply.button(text:"Odds"),QuickReply.button(text:"Tips"),QuickReply.button(text:"Tips"),QuickReply.button(text:"Tips")]
-        collectionViewLayout.items = [QuickReply.button(text: "Odds"),QuickReply.buttonWithImage(text: "Odds", image: UIImage(named: "odds")!),QuickReply.button(text: "Odds"),QuickReply.buttonWithImage(text: "Odds", image: UIImage(named: "odds")!)]
-        quickReplyView.reloadData()
-        collectionView.collectionViewLayout.sectionInset = UIEdgeInsetsMake(10, 5, QuickReplyViewHeight+5, 5)
-        collectionView.collectionViewLayout.invalidateLayout()
-//        collectionView.layoutIfNeeded()
-        collectionView.reloadData()
-        scrollToBottom(animated: false)
-        quickReplyView.isHidden = false
+//
+//        collectionViewLayout.items = [QuickReply.button(text: "Odds"),QuickReply.buttonWithImage(text: "Odds", image: UIImage(named: "odds")!),QuickReply.button(text: "Odds"),QuickReply.buttonWithImage(text: "Odds", image: UIImage(named: "odds")!)]
+//        quickReplyView.reloadData()
+//        collectionView.collectionViewLayout.sectionInset = UIEdgeInsetsMake(10, 5, QuickReplyViewHeight+5, 5)
+////        collectionView.layoutIfNeeded()
+//        collectionView.reloadData()
+//        scrollToBottom(animated: false)
+//        quickReplyView.isHidden = false
     }
 
     func hideQuickReplyView() {
         quickReplyView.isHidden = true
-        collectionView.collectionViewLayout.sectionInset = UIEdgeInsetsMake(10, 5, 10, -15)
-        collectionView.collectionViewLayout.invalidateLayout()
+        collectionView.collectionViewLayout.sectionInset = UIEdgeInsetsMake(20, 5, 10, -10)
         collectionView.reloadData()
         scrollToBottom(animated: false)
     }
+
+    override func didPressAccessoryButton(_ sender: UIButton!) {
+        imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = .photoLibrary
+        imagePickerController.mediaTypes = [String(kUTTypeImage)]
+        imagePickerController.modalPresentationStyle = .custom
+        self.present(imagePickerController, animated: true, completion: nil)
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        collectionViewLayout.collectionViewWidth = CGFloat(size.width)
+        quickReplyView.collectionView.collectionViewLayout.invalidateLayout()
+    }
+}
+
+extension MessagesViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return chatModel.messages.count
@@ -149,22 +190,24 @@ final class MessagesViewController: JSQMessagesViewController, UIImagePickerCont
     }
 
     override func didPressSend(_ button: UIButton, withMessageText text: String, senderId: String, senderDisplayName: String, date: Date) {
-//        chat.sendMessage(text) { (result, error) -> () in
-//            if let unwrappedError = error {
-//                UIHelper.showErrorAlert(CSError.Network(reason: unwrappedError.localizedDescription))
-//            }else{
-//                DispatchQueue.main.async {
-//                    self.finishSendingMessage(animated: true)
-//                }
-//            }
-//        }
-//        viewModel.send(message: text)
-//        //TODO:Place JSQMessage unwrapping into Message extension
-//        chatModel.messages.append(JSQMessage(senderId: userID, senderDisplayName: userID, date: Date.distantPast, text: text))
-//        self.finishSendingMessage()
+        //        chat.sendMessage(text) { (result, error) -> () in
+        //            if let unwrappedError = error {
+        //                UIHelper.showErrorAlert(CSError.Network(reason: unwrappedError.localizedDescription))
+        //            }else{
+        //                DispatchQueue.main.async {
+        //                    self.finishSendingMessage(animated: true)
+        //                }
+        //            }
+        //        }
+        //        viewModel.send(message: text)
+        //        //TODO:Place JSQMessage unwrapping into Message extension
+        //        chatModel.messages.append(JSQMessage(senderId: userID, senderDisplayName: userID, date: Date.distantPast, text: text))
+        //        self.finishSendingMessage()
 
-        showQuickReplyViewWithItems(items: [])
-
+        viewModel.messageService.sendMessage(text: text)
+        chatModel.messages.append(JSQMessage(senderId: userID, senderDisplayName: userID, date: Date.distantPast, text: text))
+        self.finishSendingMessage()
+        //showQuickReplyViewWithItems(items: [])
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -184,29 +227,32 @@ final class MessagesViewController: JSQMessagesViewController, UIImagePickerCont
         return cell!
     }
 
-    override func didPressAccessoryButton(_ sender: UIButton!) {
-        self.present(imagePickerController, animated: true, completion: nil)
-    }
+}
+
+extension MessagesViewController: UIImagePickerControllerDelegate {
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
 
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-        chatModel.addPhotoMediaMessage(image: image)
+            chatModel.addPhotoMediaMessage(image: image)
         } else if let mediaUrl = info[UIImagePickerControllerMediaURL] as? URL {
             chatModel.addVideoMediaMessage(videoUrl: mediaUrl)
         }
         imagePickerController.dismiss(animated: true, completion: nil)
         self.finishSendingMessage()
     }
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        collectionViewLayout.collectionViewWidth = CGFloat(size.width)
-        quickReplyView.collectionView.collectionViewLayout.invalidateLayout()
-    }
+
 }
 
 extension MessagesViewController: AlertRenderer { }
 
+extension MessagesViewController: HUDRenderer { }
+
 extension MessagesViewController: MessageViewModelDelegate {
+
+    func didConnectedToChannel() {
+        hideHUD()
+    }
     
     func didReceive(message: Message) {
         chatModel.messages.append(JSQMessage(senderId: botID, senderDisplayName: botID, date: Date.distantPast, text:message.text))
@@ -214,6 +260,7 @@ extension MessagesViewController: MessageViewModelDelegate {
     }
     
     func didReceive(error: Error) {
+        hideHUD()
         displayError(error)
     }
 }
@@ -221,7 +268,7 @@ extension MessagesViewController: MessageViewModelDelegate {
 extension MessagesViewController: QuickReplyCollectionViewDelegate {
 
     func didSelectItem(item:QuickReply) {
-        chatModel.messages.append(JSQMessage(senderId: userID, senderDisplayName: userID, date: Date.distantPast, text: item.text))
+//        chatModel.messages.append(JSQMessage(senderId: userID, senderDisplayName: userID, date: Date.distantPast, text: item.text!))
         self.finishSendingMessage()
         hideQuickReplyView()
     }

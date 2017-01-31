@@ -26,7 +26,9 @@ final class ChatModel: NSObject {
 
     override init(){
         super.init()
-        loadFakeMessages()
+        //loadFakeMessages()
+        self.incomingBubbleImageData = bubbleFactory?.incomingMessagesBubbleImage(with: UIColor(red: 96.0/255.0, green: 143.0/255.0, blue: 191.0/255.0, alpha: 1.0))
+        self.outgoingBubbleImageData = bubbleFactory?.outgoingMessagesBubbleImage(with: UIColor.customGreyColor())
     }
     func loadFakeMessages() {
 

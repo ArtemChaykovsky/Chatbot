@@ -1,19 +1,12 @@
 use_frameworks!
 
-target ‘Chatbot’ do
+target ‘TipTap’ do
 
 pod ‘JSQMessagesViewController’, ‘~>7.3’
-pod 'Firebase'
-pod 'Firebase/Auth'
-pod 'Firebase/Database'
-pod 'FirebaseUI/Auth'
-pod 'FirebaseUI/Database'
-pod 'FirebaseUI/Facebook'
-pod 'FirebaseUI/Twitter'
-pod 'FirebaseUI/Google'
-pod 'Firebase/Core'
-pod 'Firebase/Messaging'
 pod 'SwiftWebSocket'
 pod 'SnapKit', '~> 3.1.2'
+pod 'Alamofire'
+pod 'MBProgressHUD', '~> 1.0.0'
+pod 'ObjectMapper'
 
 end

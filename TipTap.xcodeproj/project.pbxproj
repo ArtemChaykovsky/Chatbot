@@ -10,7 +10,7 @@
 		2905208DC522FD5105F19E64 /* Pods_Chatbot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83CEB8A7D521827C83EF604B /* Pods_Chatbot.framework */; };
 		346438CD1E37A5700007DF36 /* MessagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346438CC1E37A5700007DF36 /* MessagesViewModel.swift */; };
 		346438CF1E37A7400007DF36 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346438CE1E37A7400007DF36 /* Helpers.swift */; };
-		B12F6A401E3E9E0300450E53 /* MyriadProRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B12F6A3F1E3E9C8C00450E53 /* MyriadProRegular.ttf */; };
+		3679DA5E7AF787188C2E716B /* Pods_TipTap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422406D9634B9120003EE9F8 /* Pods_TipTap.framework */; };
 		B19D36341E378A85006BD3DA /* QuickReplyCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19D36331E378A85006BD3DA /* QuickReplyCollectionViewLayout.swift */; };
 		B1CD80601E36600C006CF685 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CD805F1E36600C006CF685 /* AppDelegate.swift */; };
 		B1CD80621E36600C006CF685 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CD80611E36600C006CF685 /* MessagesViewController.swift */; };
@@ -19,7 +19,7 @@
 		B1CD806A1E36600C006CF685 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1CD80681E36600C006CF685 /* LaunchScreen.storyboard */; };
 		B1CD80731E366945006CF685 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CD80721E366945006CF685 /* ChatModel.swift */; };
 		B1CD80791E374A81006CF685 /* MessagingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CD80781E374A81006CF685 /* MessagingService.swift */; };
-		B1CD807B1E37538F006CF685 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B1CD807A1E37538F006CF685 /* GoogleService-Info.plist */; };
+		B1ED5D251E40B6D6008335F8 /* HUDRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1ED5D241E40B6D6008335F8 /* HUDRenderer.swift */; };
 		B1F5364A1E38B2D700BA25B9 /* QuickReplyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F536491E38B2D700BA25B9 /* QuickReplyView.swift */; };
 		B1F5364C1E38B39D00BA25B9 /* QuickReplyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1F5364B1E38B39D00BA25B9 /* QuickReplyView.xib */; };
 		B1F536541E38C3DA00BA25B9 /* QuickReplyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F536521E38C3DA00BA25B9 /* QuickReplyCell.swift */; };
@@ -29,9 +29,10 @@
 /* Begin PBXFileReference section */
 		346438CC1E37A5700007DF36 /* MessagesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessagesViewModel.swift; path = ChatModel/MessagesViewModel.swift; sourceTree = "<group>"; };
 		346438CE1E37A7400007DF36 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		422406D9634B9120003EE9F8 /* Pods_TipTap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TipTap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7880071F1E5287457651AEDE /* Pods-Chatbot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chatbot.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chatbot/Pods-Chatbot.debug.xcconfig"; sourceTree = "<group>"; };
+		7C95748734FA31D08BE2A898 /* Pods-TipTap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TipTap.release.xcconfig"; path = "Pods/Target Support Files/Pods-TipTap/Pods-TipTap.release.xcconfig"; sourceTree = "<group>"; };
 		83CEB8A7D521827C83EF604B /* Pods_Chatbot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chatbot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B12F6A3F1E3E9C8C00450E53 /* MyriadProRegular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = MyriadProRegular.ttf; path = Fonts/MyriadProRegular.ttf; sourceTree = "<group>"; };
 		B19D36331E378A85006BD3DA /* QuickReplyCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuickReplyCollectionViewLayout.swift; path = ChatModel/QuickReplyCollectionViewLayout.swift; sourceTree = "<group>"; };
 		B1CD805C1E36600C006CF685 /* TipTap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TipTap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1CD805F1E36600C006CF685 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -42,11 +43,12 @@
 		B1CD806B1E36600C006CF685 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B1CD80721E366945006CF685 /* ChatModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatModel.swift; path = ChatModel/ChatModel.swift; sourceTree = "<group>"; };
 		B1CD80781E374A81006CF685 /* MessagingService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessagingService.swift; path = ChatModel/MessagingService.swift; sourceTree = "<group>"; };
-		B1CD807A1E37538F006CF685 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B1ED5D241E40B6D6008335F8 /* HUDRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HUDRenderer.swift; path = Helpers/HUDRenderer.swift; sourceTree = "<group>"; };
 		B1F536491E38B2D700BA25B9 /* QuickReplyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuickReplyView.swift; path = QuickReply/QuickReplyView.swift; sourceTree = "<group>"; };
 		B1F5364B1E38B39D00BA25B9 /* QuickReplyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = QuickReplyView.xib; path = QuickReply/QuickReplyView.xib; sourceTree = "<group>"; };
 		B1F536521E38C3DA00BA25B9 /* QuickReplyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuickReplyCell.swift; path = QuickReply/Cells/QuickReplyCell.swift; sourceTree = "<group>"; };
 		B1F536531E38C3DA00BA25B9 /* QuickReplyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = QuickReplyCell.xib; path = QuickReply/Cells/QuickReplyCell.xib; sourceTree = "<group>"; };
+		B9CF0C0EE47C53D43B5A97E0 /* Pods-TipTap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TipTap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TipTap/Pods-TipTap.debug.xcconfig"; sourceTree = "<group>"; };
 		FA192925251E93C47DAF3668 /* Pods-Chatbot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chatbot.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chatbot/Pods-Chatbot.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -56,6 +58,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2905208DC522FD5105F19E64 /* Pods_Chatbot.framework in Frameworks */,
+				3679DA5E7AF787188C2E716B /* Pods_TipTap.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,6 +70,8 @@
 			children = (
 				7880071F1E5287457651AEDE /* Pods-Chatbot.debug.xcconfig */,
 				FA192925251E93C47DAF3668 /* Pods-Chatbot.release.xcconfig */,
+				B9CF0C0EE47C53D43B5A97E0 /* Pods-TipTap.debug.xcconfig */,
+				7C95748734FA31D08BE2A898 /* Pods-TipTap.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -75,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				83CEB8A7D521827C83EF604B /* Pods_Chatbot.framework */,
+				422406D9634B9120003EE9F8 /* Pods_TipTap.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -82,7 +88,6 @@
 		B12F6A3B1E3E973900450E53 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				B12F6A3F1E3E9C8C00450E53 /* MyriadProRegular.ttf */,
 			);
 			name = Fonts;
 			sourceTree = "<group>";
@@ -91,7 +96,6 @@
 			isa = PBXGroup;
 			children = (
 				B12F6A3B1E3E973900450E53 /* Fonts */,
-				B1CD807A1E37538F006CF685 /* GoogleService-Info.plist */,
 			);
 			name = "Supporting files";
 			sourceTree = "<group>";
@@ -117,6 +121,7 @@
 		B1CD805E1E36600C006CF685 /* TipTap */ = {
 			isa = PBXGroup;
 			children = (
+				B1ED5D231E40B6B6008335F8 /* Helpers */,
 				B1F536481E38AFEF00BA25B9 /* QuickReply */,
 				B1CD80711E366919006CF685 /* ChatModel */,
 				B1CD805F1E36600C006CF685 /* AppDelegate.swift */,
@@ -126,7 +131,6 @@
 				B1CD80681E36600C006CF685 /* LaunchScreen.storyboard */,
 				B1CD806B1E36600C006CF685 /* Info.plist */,
 				346438CC1E37A5700007DF36 /* MessagesViewModel.swift */,
-				346438CE1E37A7400007DF36 /* Helpers.swift */,
 				B19D36561E37C5CD006BD3DA /* Supporting files */,
 			);
 			name = TipTap;
@@ -140,6 +144,15 @@
 				B1CD80721E366945006CF685 /* ChatModel.swift */,
 			);
 			name = ChatModel;
+			sourceTree = "<group>";
+		};
+		B1ED5D231E40B6B6008335F8 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				346438CE1E37A7400007DF36 /* Helpers.swift */,
+				B1ED5D241E40B6D6008335F8 /* HUDRenderer.swift */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		B1F536481E38AFEF00BA25B9 /* QuickReply */ = {
@@ -225,10 +238,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B12F6A401E3E9E0300450E53 /* MyriadProRegular.ttf in Resources */,
 				B1F536551E38C3DA00BA25B9 /* QuickReplyCell.xib in Resources */,
 				B1CD806A1E36600C006CF685 /* LaunchScreen.storyboard in Resources */,
-				B1CD807B1E37538F006CF685 /* GoogleService-Info.plist in Resources */,
 				B1F5364C1E38B39D00BA25B9 /* QuickReplyView.xib in Resources */,
 				B1CD80671E36600C006CF685 /* Assets.xcassets in Resources */,
 				B1CD80651E36600C006CF685 /* Main.storyboard in Resources */,
@@ -265,7 +276,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Chatbot/Pods-Chatbot-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TipTap/Pods-TipTap-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FF0EC7924C7E6193147C6ED7 /* [CP] Copy Pods Resources */ = {
@@ -280,7 +291,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Chatbot/Pods-Chatbot-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TipTap/Pods-TipTap-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -294,6 +305,7 @@
 				346438CF1E37A7400007DF36 /* Helpers.swift in Sources */,
 				B19D36341E378A85006BD3DA /* QuickReplyCollectionViewLayout.swift in Sources */,
 				B1F5364A1E38B2D700BA25B9 /* QuickReplyView.swift in Sources */,
+				B1ED5D251E40B6D6008335F8 /* HUDRenderer.swift in Sources */,
 				B1F536541E38C3DA00BA25B9 /* QuickReplyCell.swift in Sources */,
 				B1CD80791E374A81006CF685 /* MessagingService.swift in Sources */,
 				B1CD80621E36600C006CF685 /* MessagesViewController.swift in Sources */,
@@ -417,7 +429,7 @@
 		};
 		B1CD806F1E36600C006CF685 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7880071F1E5287457651AEDE /* Pods-Chatbot.debug.xcconfig */;
+			baseConfigurationReference = B9CF0C0EE47C53D43B5A97E0 /* Pods-TipTap.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -435,7 +447,7 @@
 		};
 		B1CD80701E36600C006CF685 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FA192925251E93C47DAF3668 /* Pods-Chatbot.release.xcconfig */;
+			baseConfigurationReference = 7C95748734FA31D08BE2A898 /* Pods-TipTap.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

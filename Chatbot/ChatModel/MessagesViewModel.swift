@@ -7,14 +7,17 @@
 //
 
 import Foundation
+import ObjectMapper
 
 protocol MessageViewModelDelegate {
+    func didConnectedToChannel()
     func didReceive(message:Message)
     func didReceive(error:Error)
 }
 
 final class MessageViewModel {
-    lazy var messageService = FRService()
+   // lazy var messageService = FRService()
+    lazy var messageService = WSService()
     var delegate:MessageViewModelDelegate?
     
     init(delegate:MessageViewModelDelegate){
@@ -27,12 +30,24 @@ final class MessageViewModel {
                 self.delegate?.didReceive(error: error)
             }
         }
+        messageService.didConnectToChannel = { error in
+            if let error = error {
+                self.delegate?.didReceive(error: error)
+            } else {
+                self.delegate?.didConnectedToChannel()
+            }
+        }
         //disable in production
        // messageService.demoMode = true
     }
+
+    func getChannel() {
+        messageService.getChannel()
+        delegate?.didConnectedToChannel()
+    }
     
     func send(message text:String){
-        let message = Message(id: "",
+       /* let message = Message(id: "",
                               seq: "",
                               text: text,
                               mediaType:.none,
@@ -41,7 +56,12 @@ final class MessageViewModel {
                               channelUuid: "",
                               contactUrn: "",
                               contactUuid: "",
-                              channelAddress: "")
-        messageService.send(msg: message)
+                              channelAddress: "",
+                              quickReplies: [])*/
+
+        let dictionary:[String:Any] = ["":""]
+        if let message = Mapper<Message>().map(JSON: dictionary) {
+            messageService.send(msg: message)
+        }
     }
 }

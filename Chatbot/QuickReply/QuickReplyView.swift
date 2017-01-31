@@ -9,7 +9,7 @@
 import UIKit
 
 
-class QuickReplyView: UIView {
+final class QuickReplyView: UIView {
     
     @IBOutlet weak var collectionView: UICollectionView!
     func reloadData() {

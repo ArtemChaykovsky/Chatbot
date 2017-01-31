@@ -40,14 +40,14 @@ extension QuickReplyCollectionViewLayout: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let item = items[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: QuickReplyCellReuseIdentifier, for: indexPath) as! QuickReplyCell
-        switch item {
-        case .button(text: let text):
-            cell.setData(title: text, image: nil)
-            break
-        case .buttonWithImage(text: let text, image: let image):
-            cell.setData(title: text, image: image)
-            break
-        }
+//        switch item {
+//        case .button(text: let text):
+//            cell.setData(title: text, image: nil)
+//            break
+//        case .buttonWithImage(text: let text, image: let image):
+//            cell.setData(title: text, image: image)
+//            break
+//        }
 
         return cell
     }
@@ -61,17 +61,17 @@ extension QuickReplyCollectionViewLayout: UICollectionViewDelegateFlowLayout {
         }
         let sizingCell: QuickReplyCell = QuickReplyCell.fromNib()
         let item = items[indexPath.row]
-        sizingCell.titleLabel.text = item.text
+//        sizingCell.titleLabel.text = item.text!
         sizingCell.titleLabel.font = UIFont.systemFont(ofSize: QuickReplyCellFontSize)
         var size = sizingCell.systemLayoutSizeFitting(CGSize(width: collectionView.contentSize.width, height:QuickReplyViewHeight-24), withHorizontalFittingPriority: UILayoutPriorityDefaultLow, verticalFittingPriority: UILayoutPriorityDefaultHigh)
 
-        switch item {
-        case .buttonWithImage(text: _, image: _):
-            size.width += 30
-            break
-        default:
-            break
-        }
+//        switch item {
+//        case .buttonWithImage(text: _, image: _):
+//            size.width += 30
+//            break
+//        default:
+//            break
+//        }
 
         collectionViewCustomInset += size.width
         return size
