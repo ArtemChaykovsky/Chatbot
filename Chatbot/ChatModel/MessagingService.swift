@@ -89,15 +89,18 @@ struct Message:Mappable {
         text <- map["text"]
         if text != nil, text!.contains("\"quick_replies\"") {
 //            text <- map["text"]
-            print("quick_replies")
 //            let quickReplies <- text?.dictionary
             if let dic = text?.dictionary {
-                print(dic["quick_replies"])
+
                 if let replies = Mapper<QuickReply>().mapArray(JSONArray: dic["quick_replies"] as! [[String : Any]]) {
                     quickReplies = replies
                 }
+
+                text = dic["text"] as? String
             }
-            quickReplies <- map["text.quick_replies"]
+            //quickReplies <- map["text.quick_replies"]
+        } else {
+            quickReplies = []
         }
         mediaType <- map["media_type"]
         mediaUrl <- (map["media_url"],URLTransform())
@@ -112,8 +115,8 @@ struct Message:Mappable {
 
 extension Message {
     init?(response:[String:Any]) {
-        id = response["msg_id"] as! String
-        seq = response["seq"] as! String
+        id = response["msg_id"] as? String
+        seq = response["seq"] as? String
         let messagetext = response["text"] as! String
         print("Response: \(response)")
         
@@ -130,7 +133,7 @@ extension Message {
 
             }
         } else {
-            text = response["text"] as! String
+            text = response["text"] as? String
             quickReplies = []
         }
 //        mediaType = response["media_type"] as! MediaType
@@ -146,10 +149,10 @@ extension Message {
         } else {
             metadata = [:]
         }
-        channelUuid = response["channel_uuid"] as! String
-        contactUrn = response["contact_urn"] as! String
-        contactUuid = response["contact_uuid"] as! String
-        channelAddress = response["channel_address"] as! String
+        channelUuid = response["channel_uuid"] as? String
+        contactUrn = response["contact_urn"] as? String
+        contactUuid = response["contact_uuid"] as? String
+        channelAddress = response["channel_address"] as? String
 
     }
 

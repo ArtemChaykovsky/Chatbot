@@ -8,11 +8,11 @@
 
 import UIKit
 
-let QuickReplyViewHeight: CGFloat          = 65
-let QuickReplyCellFontSize: CGFloat        = 13
-let CollectionViewDefaultInset: CGFloat    = 40
-let CollectionViewDefaultSpacing: CGFloat    = 10
-let QuickReplyCellReuseIdentifier          = "QuickReplyCellReuseIdentifier"
+let QuickReplyViewHeight: CGFloat           = 65
+let QuickReplyCellFontSize: CGFloat         = 14
+let CollectionViewDefaultInset: CGFloat     = 40
+let CollectionViewDefaultSpacing: CGFloat   = 10
+let QuickReplyCellReuseIdentifier           = "QuickReplyCellReuseIdentifier"
 
 
 protocol QuickReplyCollectionViewDelegate{
@@ -49,6 +49,7 @@ extension QuickReplyCollectionViewLayout: UICollectionViewDataSource {
 //            break
 //        }
 
+        cell.titleLabel.text = item.title
         return cell
     }
 }
@@ -61,9 +62,9 @@ extension QuickReplyCollectionViewLayout: UICollectionViewDelegateFlowLayout {
         }
         let sizingCell: QuickReplyCell = QuickReplyCell.fromNib()
         let item = items[indexPath.row]
-//        sizingCell.titleLabel.text = item.text!
+        sizingCell.titleLabel.text = item.title!
         sizingCell.titleLabel.font = UIFont.systemFont(ofSize: QuickReplyCellFontSize)
-        var size = sizingCell.systemLayoutSizeFitting(CGSize(width: collectionView.contentSize.width, height:QuickReplyViewHeight-24), withHorizontalFittingPriority: UILayoutPriorityDefaultLow, verticalFittingPriority: UILayoutPriorityDefaultHigh)
+        let size = sizingCell.systemLayoutSizeFitting(CGSize(width: collectionView.contentSize.width, height:QuickReplyViewHeight-24), withHorizontalFittingPriority: UILayoutPriorityDefaultLow, verticalFittingPriority: UILayoutPriorityDefaultHigh)
 
 //        switch item {
 //        case .buttonWithImage(text: _, image: _):

@@ -145,6 +145,14 @@ final class MessagesViewController: JSQMessagesViewController, UINavigationContr
 //        collectionView.reloadData()
 //        scrollToBottom(animated: false)
 //        quickReplyView.isHidden = false
+
+        collectionViewLayout.items = items
+        quickReplyView.reloadData()
+        collectionView.collectionViewLayout.sectionInset = UIEdgeInsetsMake(10, 5, QuickReplyViewHeight+5, 5)
+        collectionView.layoutIfNeeded()
+        collectionView.reloadData()
+        scrollToBottom(animated: false)
+        quickReplyView.isHidden = false
     }
 
     func hideQuickReplyView() {
@@ -255,8 +263,19 @@ extension MessagesViewController: MessageViewModelDelegate {
     }
     
     func didReceive(message: Message) {
-        chatModel.messages.append(JSQMessage(senderId: botID, senderDisplayName: botID, date: Date.distantPast, text:message.text))
-        self.finishSendingMessage()
+
+        if let text = message.text, !(message.text?.isEmpty)! {
+            chatModel.messages.append(JSQMessage(senderId: botID, senderDisplayName: botID, date: Date.distantPast, text:text))
+            self.finishSendingMessage()
+        } else if let mediaUrl = message.mediaUrl {
+            chatModel.messages.append(JSQMessage(senderId: botID, senderDisplayName: botID, date: Date.distantPast, text:mediaUrl.absoluteString))
+            self.finishSendingMessage()
+        }
+
+        if message.quickReplies!.count > 0 {
+            showQuickReplyViewWithItems(items: message.quickReplies!)
+        }
+
     }
     
     func didReceive(error: Error) {
@@ -269,6 +288,8 @@ extension MessagesViewController: QuickReplyCollectionViewDelegate {
 
     func didSelectItem(item:QuickReply) {
 //        chatModel.messages.append(JSQMessage(senderId: userID, senderDisplayName: userID, date: Date.distantPast, text: item.text!))
+        viewModel.messageService.sendMessage(text: item.title!)
+        chatModel.messages.append(JSQMessage(senderId: userID, senderDisplayName: userID, date: Date.distantPast, text: item.title!))
         self.finishSendingMessage()
         hideQuickReplyView()
     }
