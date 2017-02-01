@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>FLAnimatedImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>JSQMessagesViewController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -47,27 +52,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>07B6CE9D050D6D33267FB0106C9F86CD</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>0C98A0760147192F815D3B84B1D13055</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>33B50DFF57ABFAA38A9A80109C56D733</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>41FA54D12162DAD51D02FC58A2CD5034</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>83B5B60C676A8D31829A6AE91CE86A75</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>91B8E6A6F37D6480CE2AFEDC92D50FE3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -83,6 +83,16 @@
 			<true/>
 		</dict>
 		<key>D0581AF7BF4A6DA140D280B19ECC7BFF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F0FFE4A9C1D7E6F54216E360655D8865</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F4CDF984D5543AA8CA3FA66D3AC6E7EB</key>
 		<dict>
 			<key>primary</key>
 			<true/>

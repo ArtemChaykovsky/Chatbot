@@ -115,55 +115,55 @@ struct Message:Mappable {
     }
 }
 
-extension Message {
-    init?(response:[String:Any]) {
-        id = response["msg_id"] as? String
-        seq = response["seq"] as? String
-        let messagetext = response["text"] as! String
-        print("Response: \(response)")
-        
-        if let unwrappedQuickReplies = messagetext.dictionary {
-            text = unwrappedQuickReplies["text"] as! String
-            quickReplies = []
-
-            if let repliesArray = unwrappedQuickReplies ["quick_replies"] as? NSArray{
-               // let message = repliesArray ["message"]
-                for dict in repliesArray {
-
-                }
-
-
-            }
-        } else {
-            text = response["text"] as? String
-            quickReplies = []
-        }
-//        mediaType = response["media_type"] as! MediaType
-        mediaType = .none
-        if let urlString = response["media_url"] as? String,
-            let url = URL(string: urlString) {
-            mediaUrl = url
-        } else {
-            mediaUrl = nil
-        }
-        if let data = response["metadata"] as? [String:Any] {
-            metadata = data
-        } else {
-            metadata = [:]
-        }
-        channelUuid = response["channel_uuid"] as? String
-        contactUrn = response["contact_urn"] as? String
-        contactUuid = response["contact_uuid"] as? String
-        channelAddress = response["channel_address"] as? String
-
-    }
+//extension Message {
+//    init?(response:[String:Any]) {
+//        id = response["msg_id"] as? String
+//        seq = response["seq"] as? String
+//        let messagetext = response["text"] as! String
+//        print("Response: \(response)")
+//        
+//        if let unwrappedQuickReplies = messagetext.dictionary {
+//            text = unwrappedQuickReplies["text"] as! String
+//            quickReplies = []
+//
+//            if let repliesArray = unwrappedQuickReplies ["quick_replies"] as? NSArray{
+//               // let message = repliesArray ["message"]
+//                for dict in repliesArray {
+//
+//                }
+//
+//
+//            }
+//        } else {
+//            text = response["text"] as? String
+//            quickReplies = []
+//        }
+////        mediaType = response["media_type"] as! MediaType
+//        mediaType = .none
+//        if let urlString = response["media_url"] as? String,
+//            let url = URL(string: urlString) {
+//            mediaUrl = url
+//        } else {
+//            mediaUrl = nil
+//        }
+//        if let data = response["metadata"] as? [String:Any] {
+//            metadata = data
+//        } else {
+//            metadata = [:]
+//        }
+//        channelUuid = response["channel_uuid"] as? String
+//        contactUrn = response["contact_urn"] as? String
+//        contactUuid = response["contact_uuid"] as? String
+//        channelAddress = response["channel_address"] as? String
+//
+//    }
 
 //TODO: finish it
 //    var jsqMessage:JSQMessage {
 //        return JSQMessage(senderId: "", displayName: "", media: <#T##JSQMessageMediaData!#>)
 //    }
 
-}
+//}
 
 protocol Service {
     var demoMode:Bool { get set }
@@ -244,7 +244,6 @@ final class WSService: Service {
         }
         ws.open()
     }
-
 
 }
 

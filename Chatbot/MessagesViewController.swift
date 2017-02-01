@@ -10,20 +10,8 @@ import UIKit
 import JSQMessagesViewController
 import SnapKit
 import MobileCoreServices
+import FLAnimatedImage
 
-//enum QuickReply{
-//
-//    case buttonWithImage(text: String,image:UIImage)
-//    case button(text: String)
-//    var text: String {
-//        switch self {
-//        case .button(text:let text):
-//            return text
-//        case .buttonWithImage(text: let text, image: _):
-//            return text
-//        }
-//    }
-//}
 
 final class MessagesViewController: JSQMessagesViewController, UINavigationControllerDelegate {
 
@@ -65,7 +53,6 @@ final class MessagesViewController: JSQMessagesViewController, UINavigationContr
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        showQuickReplyViewWithItems(items: [])
         showHUD()
         viewModel.getChannel()
     }
@@ -100,7 +87,7 @@ final class MessagesViewController: JSQMessagesViewController, UINavigationContr
 
         collectionViewLayout = QuickReplyCollectionViewLayout(delegate: self)
         collectionView.backgroundColor = UIColor.chatBackgroundColor()
-        collectionView.collectionViewLayout.sectionInset = UIEdgeInsetsMake(20, 5, 10, -10)
+        collectionView.collectionViewLayout.sectionInset = UIEdgeInsetsMake(20, 5, 13, -10)
         collectionView.collectionViewLayout.minimumLineSpacing = CollectionViewDefaultSpacing
     }
 
@@ -138,15 +125,9 @@ final class MessagesViewController: JSQMessagesViewController, UINavigationContr
     }
 
     func showQuickReplyViewWithItems(items: [QuickReply]) {
-//
-//        collectionViewLayout.items = [QuickReply.button(text: "Odds"),QuickReply.buttonWithImage(text: "Odds", image: UIImage(named: "odds")!),QuickReply.button(text: "Odds"),QuickReply.buttonWithImage(text: "Odds", image: UIImage(named: "odds")!)]
-//        quickReplyView.reloadData()
-//        collectionView.collectionViewLayout.sectionInset = UIEdgeInsetsMake(10, 5, QuickReplyViewHeight+5, 5)
-////        collectionView.layoutIfNeeded()
-//        collectionView.reloadData()
-//        scrollToBottom(animated: false)
-//        quickReplyView.isHidden = false
 
+//        collectionViewLayout.items = [QuickReply.button(text: "Odds"),QuickReply.buttonWithImage(text: "Odds", image: UIImage(named: "odds")!),QuickReply.button(text: "Odds"),QuickReply.buttonWithImage(text: "Odds", image: UIImage(named: "odds")!)]
+        
         collectionViewLayout.items = items
         quickReplyView.reloadData()
         collectionView.collectionViewLayout.sectionInset = UIEdgeInsetsMake(10, 5, QuickReplyViewHeight+5, 5)
@@ -158,7 +139,7 @@ final class MessagesViewController: JSQMessagesViewController, UINavigationContr
 
     func hideQuickReplyView() {
         quickReplyView.isHidden = true
-        collectionView.collectionViewLayout.sectionInset = UIEdgeInsetsMake(20, 5, 10, -10)
+        collectionView.collectionViewLayout.sectionInset = UIEdgeInsetsMake(20, 5, 13, -10)
         collectionView.reloadData()
         scrollToBottom(animated: false)
     }
@@ -213,30 +194,59 @@ extension MessagesViewController {
         //        chatModel.messages.append(JSQMessage(senderId: userID, senderDisplayName: userID, date: Date.distantPast, text: text))
         //        self.finishSendingMessage()
 
+
+        chatModel.messages.append(JSQInfoMessage(senderId: userID, senderDisplayName: userID, date: Date.distantPast, text: text))
         viewModel.messageService.sendMessage(text: text)
-        chatModel.messages.append(JSQMessage(senderId: userID, senderDisplayName: userID, date: Date.distantPast, text: text))
         self.finishSendingMessage()
-        //showQuickReplyViewWithItems(items: [])
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = super.collectionView(collectionView, cellForItemAt: indexPath) as? JSQMessagesCollectionViewCell
+
+        let cell = super.collectionView(collectionView, cellForItemAt: indexPath) as! JSQMessagesCollectionViewCell
         let msg = chatModel.messages[indexPath.item]
 
         if !msg.isMediaMessage {
-            cell?.textView?.dataDetectorTypes = UIDataDetectorTypes.lookupSuggestion
-            cell?.textView!.textColor = UIColor.black
+
+            cell.textView?.dataDetectorTypes = UIDataDetectorTypes.lookupSuggestion
+            cell.textView!.textColor = UIColor.black
 
             if msg.senderId == userID {
-                cell?.textView.textColor = UIColor(red: 98/255.0, green: 98/255.0, blue: 98/255.0, alpha: 1)
+                cell.textView.textColor = UIColor(red: 98/255.0, green: 98/255.0, blue: 98/255.0, alpha: 1)
             } else {
-                cell?.textView.textColor = UIColor.white
+                cell.textView.textColor = UIColor.white
             }
-            
+        } else if msg.gifUrl != nil{
+
+            configureCellWithGif(gifUrl: msg.gifUrl!, cell: cell)
         }
-        return cell!
+
+
+        return cell
     }
 
+
+    func configureCellWithGif(gifUrl:URL, cell: JSQMessagesCollectionViewCell ) {
+        DispatchQueue.global().async {
+        do {
+
+                let data = try Data(contentsOf: gifUrl)
+                DispatchQueue.main.async {
+                    let image = FLAnimatedImage(animatedGIFData: data)
+                    let imageView = FLAnimatedImageView()
+                    imageView.animatedImage = image
+                    imageView.frame = cell.contentView.frame
+                    imageView.layer.cornerRadius = 10
+                    imageView.layer.masksToBounds = true
+                    // imageView.layer.frame = cell.contentView.layer.frame
+                    //                cell.mediaView.addSubview(imageView)
+                    cell.mediaView = imageView
+                }
+        } catch {
+            print("error")
+        }
+        }
+    }
+    
 }
 
 extension MessagesViewController: UIImagePickerControllerDelegate {
@@ -267,16 +277,23 @@ extension MessagesViewController: MessageViewModelDelegate {
     func didReceive(message: Message) {
 
         if let text = message.text, !(message.text?.isEmpty)! {
-            chatModel.messages.append(JSQMessage(senderId: botID, senderDisplayName: botID, date: Date.distantPast, text:text))
+            chatModel.messages.append(JSQInfoMessage(senderId: botID, senderDisplayName: botID, date: Date.distantPast, text:text))
             self.finishSendingMessage()
-        } else if let mediaUrl = message.mediaUrl {
+        }
+        if let mediaUrl = message.mediaUrl {
 
             let data = try? Data(contentsOf: mediaUrl) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
            // let imageView = UIImageView(
             if let unwrappedData = data {
                 let image = UIImage(data:unwrappedData )
                 let photoItem = JSQPhotoMediaItem(image: image)
-                chatModel.messages.append(JSQMessage(senderId: userID, displayName: userID, media:photoItem))
+                photoItem?.appliesMediaViewMaskAsOutgoing = false
+                let message = JSQInfoMessage(senderId: botID, displayName: botID, media:photoItem)
+                if mediaUrl.absoluteString.contains(".gif") {
+                    //message?.gifUrl = mediaUrl
+                    message?.gifUrl = mediaUrl
+                }
+                chatModel.messages.append(message!)
                 self.finishSendingMessage()
             }
         }
@@ -298,9 +315,12 @@ extension MessagesViewController: QuickReplyCollectionViewDelegate {
     func didSelectItem(item:QuickReply) {
 //        chatModel.messages.append(JSQMessage(senderId: userID, senderDisplayName: userID, date: Date.distantPast, text: item.text!))
         viewModel.messageService.sendMessage(text: item.title!)
-        chatModel.messages.append(JSQMessage(senderId: userID, senderDisplayName: userID, date: Date.distantPast, text: item.title!))
+        chatModel.messages.append(JSQInfoMessage(senderId: userID, senderDisplayName: userID, date: Date.distantPast, text: item.title!))
         self.finishSendingMessage()
         hideQuickReplyView()
     }
 }
 
+class JSQInfoMessage: JSQMessage {
+    var gifUrl: URL?
+}

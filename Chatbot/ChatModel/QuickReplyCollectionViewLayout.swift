@@ -11,7 +11,7 @@ import UIKit
 let QuickReplyViewHeight: CGFloat           = 65
 let QuickReplyCellFontSize: CGFloat         = 14
 let CollectionViewDefaultInset: CGFloat     = 40
-let CollectionViewDefaultSpacing: CGFloat   = 10
+let CollectionViewDefaultSpacing: CGFloat   = 13
 let QuickReplyCellReuseIdentifier           = "QuickReplyCellReuseIdentifier"
 
 

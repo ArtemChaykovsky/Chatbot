@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2905208DC522FD5105F19E64 /* Pods_Chatbot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83CEB8A7D521827C83EF604B /* Pods_Chatbot.framework */; };
 		346438CD1E37A5700007DF36 /* MessagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346438CC1E37A5700007DF36 /* MessagesViewModel.swift */; };
 		346438CF1E37A7400007DF36 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346438CE1E37A7400007DF36 /* Helpers.swift */; };
 		3679DA5E7AF787188C2E716B /* Pods_TipTap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422406D9634B9120003EE9F8 /* Pods_TipTap.framework */; };
@@ -57,7 +56,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2905208DC522FD5105F19E64 /* Pods_Chatbot.framework in Frameworks */,
 				3679DA5E7AF787188C2E716B /* Pods_TipTap.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -85,17 +83,9 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		B12F6A3B1E3E973900450E53 /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Fonts;
-			sourceTree = "<group>";
-		};
 		B19D36561E37C5CD006BD3DA /* Supporting files */ = {
 			isa = PBXGroup;
 			children = (
-				B12F6A3B1E3E973900450E53 /* Fonts */,
 			);
 			name = "Supporting files";
 			sourceTree = "<group>";
@@ -210,8 +200,9 @@
 				TargetAttributes = {
 					B1CD805B1E36600C006CF685 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = EUT2FT65UX;
 						LastSwiftMigration = 0820;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -433,7 +424,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = EUT2FT65UX;
 				INFOPLIST_FILE = Chatbot/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -451,7 +443,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = EUT2FT65UX;
 				INFOPLIST_FILE = Chatbot/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

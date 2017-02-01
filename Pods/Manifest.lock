@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.3.0)
+  - FLAnimatedImage (1.0.12)
   - JSQMessagesViewController (7.3.4):
     - JSQSystemSoundPlayer (~> 2.0.1)
   - JSQSystemSoundPlayer (2.0.1)
@@ -10,14 +11,25 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - FLAnimatedImage (from `https://github.com/wireapp/FLAnimatedImage.git`)
   - JSQMessagesViewController (~> 7.3)
   - MBProgressHUD (~> 1.0.0)
   - ObjectMapper
   - SnapKit (~> 3.1.2)
   - SwiftWebSocket
 
+EXTERNAL SOURCES:
+  FLAnimatedImage:
+    :git: https://github.com/wireapp/FLAnimatedImage.git
+
+CHECKOUT OPTIONS:
+  FLAnimatedImage:
+    :commit: 2710cb8a55be914b9adeea1f3e76ea668970eda2
+    :git: https://github.com/wireapp/FLAnimatedImage.git
+
 SPEC CHECKSUMS:
   Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
@@ -25,6 +37,6 @@ SPEC CHECKSUMS:
   SnapKit: 12b24f569cb7c143acc9c22b9d91b23e7b1c84a2
   SwiftWebSocket: 1ef8a0efb023544643bdf480c1ec4a62b204f293
 
-PODFILE CHECKSUM: 5b84e33e2c564236dde102912f1990b31dd72f9d
+PODFILE CHECKSUM: 4b05cc08fafa771fe52b86b806317b43e82a028a
 
 COCOAPODS: 1.1.1
