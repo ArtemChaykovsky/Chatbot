@@ -16,7 +16,7 @@ protocol MessageViewModelDelegate {
 }
 
 final class MessageViewModel {
-   // lazy var messageService = FRService()
+
     lazy var messageService = WSService()
     var delegate:MessageViewModelDelegate?
     

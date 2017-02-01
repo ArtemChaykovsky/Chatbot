@@ -91,7 +91,6 @@ struct Message:Mappable {
 //            text <- map["text"]
 //            let quickReplies <- text?.dictionary
             if let dic = text?.dictionary {
-
                 if let replies = Mapper<QuickReply>().mapArray(JSONArray: dic["quick_replies"] as! [[String : Any]]) {
                     quickReplies = replies
                 }
@@ -99,6 +98,9 @@ struct Message:Mappable {
                 text = dic["text"] as? String
             }
             //quickReplies <- map["text.quick_replies"]
+        } else  if text!.contains("\"payload\"")  {
+            text = ""
+            quickReplies = []
         } else {
             quickReplies = []
         }

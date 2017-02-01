@@ -111,6 +111,7 @@ final class MessagesViewController: JSQMessagesViewController, UINavigationContr
         accessoryButton.frame.size = CGSize(width: 30, height: 30)
         accessoryButton.setBackgroundImage(plusImage, for: .normal)
         inputToolbar.contentView.leftBarButtonItem = accessoryButton
+        inputToolbar.contentView.leftBarButtonItem.isHidden = true
         inputToolbar.contentView.backgroundColor = UIColor.white
         inputToolbar.contentView.textView.placeHolder = "Your message"
         inputToolbar.contentView.textView.autocorrectionType = .no;
@@ -231,6 +232,7 @@ extension MessagesViewController {
             } else {
                 cell?.textView.textColor = UIColor.white
             }
+            
         }
         return cell!
     }
@@ -268,8 +270,15 @@ extension MessagesViewController: MessageViewModelDelegate {
             chatModel.messages.append(JSQMessage(senderId: botID, senderDisplayName: botID, date: Date.distantPast, text:text))
             self.finishSendingMessage()
         } else if let mediaUrl = message.mediaUrl {
-            chatModel.messages.append(JSQMessage(senderId: botID, senderDisplayName: botID, date: Date.distantPast, text:mediaUrl.absoluteString))
-            self.finishSendingMessage()
+
+            let data = try? Data(contentsOf: mediaUrl) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+           // let imageView = UIImageView(
+            if let unwrappedData = data {
+                let image = UIImage(data:unwrappedData )
+                let photoItem = JSQPhotoMediaItem(image: image)
+                chatModel.messages.append(JSQMessage(senderId: userID, displayName: userID, media:photoItem))
+                self.finishSendingMessage()
+            }
         }
 
         if message.quickReplies!.count > 0 {
