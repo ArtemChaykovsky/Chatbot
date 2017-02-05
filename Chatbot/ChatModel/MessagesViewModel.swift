@@ -10,7 +10,7 @@ import Foundation
 import ObjectMapper
 
 protocol MessageViewModelDelegate {
-    func didConnectedToChannel()
+    func didConnectedToChannel(error:Error?)
     func didReceive(message:Message)
     func didReceive(error:Error)
 }
@@ -31,11 +31,12 @@ final class MessageViewModel {
             }
         }
         messageService.didConnectToChannel = { error in
-            if let error = error {
-                self.delegate?.didReceive(error: error)
-            } else {
-                self.delegate?.didConnectedToChannel()
-            }
+//            if let error = error {
+//                self.delegate?.didReceive(error: error)
+//            } else {
+//                self.delegate?.didConnectedToChannel()
+//            }
+            self.delegate?.didConnectedToChannel(error: error)
         }
         //disable in production
        // messageService.demoMode = true
@@ -43,7 +44,7 @@ final class MessageViewModel {
 
     func getChannel() {
         messageService.getChannel()
-        delegate?.didConnectedToChannel()
+       // delegate?.didConnectedToChannel()
     }
     
     func send(message text:String){

@@ -25,6 +25,18 @@
 		B1F536551E38C3DA00BA25B9 /* QuickReplyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1F536531E38C3DA00BA25B9 /* QuickReplyCell.xib */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		B1E0D9CD1E42398500EC6125 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		346438CC1E37A5700007DF36 /* MessagesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessagesViewModel.swift; path = ChatModel/MessagesViewModel.swift; sourceTree = "<group>"; };
 		346438CE1E37A7400007DF36 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
@@ -178,6 +190,8 @@
 				B1CD805A1E36600C006CF685 /* Resources */,
 				79D5585F19CAC0509A45A3EF /* [CP] Embed Pods Frameworks */,
 				FF0EC7924C7E6193147C6ED7 /* [CP] Copy Pods Resources */,
+				B1E0D9CD1E42398500EC6125 /* CopyFiles */,
+				B1E0D9CE1E4239AA00EC6125 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -269,6 +283,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TipTap/Pods-TipTap-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		B1E0D9CE1E4239AA00EC6125 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 71b87d4516d60ca4803f075498a8b283db3c13d3 289d003c56f0db9f78ee8728e8865b1d21d6fe6d9d7e9f7c698bd550899b3982";
 		};
 		FF0EC7924C7E6193147C6ED7 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -429,7 +456,7 @@
 				INFOPLIST_FILE = Chatbot/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.onix.ChatBot;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kk.test.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -448,7 +475,7 @@
 				INFOPLIST_FILE = Chatbot/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.onix.ChatBot;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kk.test.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;

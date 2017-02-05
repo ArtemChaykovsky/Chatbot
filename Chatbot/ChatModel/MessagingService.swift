@@ -24,6 +24,8 @@ enum MediaType:String {
     case audio
 }
 
+let baseUrl = "http://infinite-island-88916.herokuapp.com/"
+
 struct QuickReply: Mappable {
 
     var contentType:String?
@@ -200,7 +202,7 @@ final class WSService: Service {
 
     func getChannel() {
         uuid = UUID().uuidString
-        Alamofire.request("http://146.185.136.172/getChannel" , method: .post, parameters: ["uuid":uuid], encoding: URLEncoding.httpBody)
+        Alamofire.request(baseUrl+"getChannel" , method: .post, parameters: ["uuid":uuid], encoding: URLEncoding.httpBody)
             .responseJSON { response in
                 print(response.request as Any)  // original URL request
                 print(response.response as Any) // URL response
@@ -221,7 +223,7 @@ final class WSService: Service {
     }
 
     func configureWebSocket() {
-        ws = WebSocket(channel!)
+        ws = WebSocket( "ws://infinite-island-88916.herokuapp.com/" + channel!)
         ws.event.open = { print("socket opened") }
         ws.event.error = { error in print("Socket error \(error)") }
         ws.event.message = { message in
@@ -240,11 +242,13 @@ final class WSService: Service {
                 }
         }
         ws.event.error = { error in
-            self.onMessageReceived(.error(e: error))
+            //self.onMessageReceived(.error(e: error))
+        }
+        ws.event.close  = {code, reason , wasClean in
+            self.ws.open()
         }
         ws.open()
     }
-
 }
 
 extension String {

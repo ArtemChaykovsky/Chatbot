@@ -89,6 +89,7 @@ final class MessagesViewController: JSQMessagesViewController, UINavigationContr
         collectionView.backgroundColor = UIColor.chatBackgroundColor()
         collectionView.collectionViewLayout.sectionInset = UIEdgeInsetsMake(20, 5, 13, -10)
         collectionView.collectionViewLayout.minimumLineSpacing = CollectionViewDefaultSpacing
+       // showTypingIndicator = true
     }
 
     private func configureInputToolbar() {
@@ -154,8 +155,10 @@ final class MessagesViewController: JSQMessagesViewController, UINavigationContr
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        collectionViewLayout.collectionViewWidth = CGFloat(size.width)
-        quickReplyView.collectionView.collectionViewLayout.invalidateLayout()
+        DispatchQueue.global().async {
+        self.collectionViewLayout.collectionViewWidth = CGFloat(size.width)
+        self.quickReplyView.collectionView.reloadData()
+        }
     }
 }
 
@@ -228,7 +231,6 @@ extension MessagesViewController {
     func configureCellWithGif(gifUrl:URL, cell: JSQMessagesCollectionViewCell ) {
         DispatchQueue.global().async {
         do {
-
                 let data = try Data(contentsOf: gifUrl)
                 DispatchQueue.main.async {
                     let image = FLAnimatedImage(animatedGIFData: data)
@@ -270,8 +272,13 @@ extension MessagesViewController: HUDRenderer { }
 
 extension MessagesViewController: MessageViewModelDelegate {
 
-    func didConnectedToChannel() {
+    func didConnectedToChannel(error: Error?) {
         hideHUD()
+        if let unwrappedError = error {
+            displayError(unwrappedError)
+        } else {
+            sendInitialMessage()
+        }
     }
     
     func didReceive(message: Message) {
@@ -308,13 +315,19 @@ extension MessagesViewController: MessageViewModelDelegate {
         hideHUD()
         displayError(error)
     }
+
+    func sendInitialMessage() {
+        chatModel.messages.append(JSQInfoMessage(senderId: userID, senderDisplayName: userID, date: Date.distantPast, text: "Hi"))
+        viewModel.messageService.sendMessage(text: "Hi")
+        self.finishSendingMessage()
+    }
 }
 
 extension MessagesViewController: QuickReplyCollectionViewDelegate {
 
     func didSelectItem(item:QuickReply) {
 //        chatModel.messages.append(JSQMessage(senderId: userID, senderDisplayName: userID, date: Date.distantPast, text: item.text!))
-        viewModel.messageService.sendMessage(text: item.title!)
+        viewModel.messageService.sendMessage(text: item.payload!)
         chatModel.messages.append(JSQInfoMessage(senderId: userID, senderDisplayName: userID, date: Date.distantPast, text: item.title!))
         self.finishSendingMessage()
         hideQuickReplyView()
