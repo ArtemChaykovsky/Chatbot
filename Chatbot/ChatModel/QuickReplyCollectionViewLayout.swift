@@ -40,15 +40,6 @@ extension QuickReplyCollectionViewLayout: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let item = items[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: QuickReplyCellReuseIdentifier, for: indexPath) as! QuickReplyCell
-//        switch item {
-//        case .button(text: let text):
-//            cell.setData(title: text, image: nil)
-//            break
-//        case .buttonWithImage(text: let text, image: let image):
-//            cell.setData(title: text, image: image)
-//            break
-//        }
-
         cell.titleLabel.text = item.title
         return cell
     }
@@ -71,8 +62,6 @@ extension QuickReplyCollectionViewLayout: UICollectionViewDelegateFlowLayout {
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-
-      //  if (collectionView.superview!.frame.size.width > collectionViewCustomInset) {
 
             collectionView.contentOffset = CGPoint.zero
             if items.count > 1 {

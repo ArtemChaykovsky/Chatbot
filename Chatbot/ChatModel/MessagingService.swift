@@ -32,9 +32,9 @@ struct QuickReply: Mappable {
     var title:String?
     var payload:String?
 
-//    "content_type": "text",
-//    "title": "💷 Today's Naps",
-//    "payload": "r_naps"
+    //    "content_type": "text",
+    //    "title": "💷 Today's Naps",
+    //    "payload": "r_naps"
 
     init?(map: Map) {
 
@@ -61,25 +61,6 @@ struct Message:Mappable {
     var contactUuid:String?
     var channelAddress:String?
     var quickReplies:[QuickReply]?
-    
-//    var anyObject:Any {
-//        var msg = [
-//            "msg_id":id,
-//            "seq":seq,
-//            "text":text,
-//            "media_type":mediaType.rawValue,
-//            "metadata":metadata,
-//            "channel_uuid":channelUuid,
-//            "contact_urn":contactUrn,
-//            "contact_uuid":contactUuid,
-//            "channel_address":channelAddress
-//        ] as [String : Any]
-//        if let url = mediaUrl {
-//            msg["media_url"] = url.absoluteURL
-//        }
-//
-//        return msg
-//    }
 
     init?(map: Map) {
 
@@ -90,8 +71,6 @@ struct Message:Mappable {
         seq <- map["seq"]
         text <- map["text"]
         if text != nil, text!.contains("\"quick_replies\"") {
-//            text <- map["text"]
-//            let quickReplies <- text?.dictionary
             if let dic = text?.dictionary {
                 if let replies = Mapper<QuickReply>().mapArray(JSONArray: dic["quick_replies"] as! [[String : Any]]) {
                     quickReplies = replies
@@ -99,7 +78,6 @@ struct Message:Mappable {
 
                 text = dic["text"] as? String
             }
-            //quickReplies <- map["text.quick_replies"]
         } else  if text!.contains("\"payload\"")  {
             text = ""
             quickReplies = []
@@ -113,52 +91,8 @@ struct Message:Mappable {
         contactUrn <- map["contact_urn"]
         contactUuid <- map["contact_uuid"]
         channelAddress <- map["channel_address"]
-//        quickReplies <- map["text.quick_replies"]
     }
 }
-
-//extension Message {
-//    init?(response:[String:Any]) {
-//        id = response["msg_id"] as? String
-//        seq = response["seq"] as? String
-//        let messagetext = response["text"] as! String
-//        print("Response: \(response)")
-//        
-//        if let unwrappedQuickReplies = messagetext.dictionary {
-//            text = unwrappedQuickReplies["text"] as! String
-//            quickReplies = []
-//
-//            if let repliesArray = unwrappedQuickReplies ["quick_replies"] as? NSArray{
-//               // let message = repliesArray ["message"]
-//                for dict in repliesArray {
-//
-//                }
-//
-//
-//            }
-//        } else {
-//            text = response["text"] as? String
-//            quickReplies = []
-//        }
-////        mediaType = response["media_type"] as! MediaType
-//        mediaType = .none
-//        if let urlString = response["media_url"] as? String,
-//            let url = URL(string: urlString) {
-//            mediaUrl = url
-//        } else {
-//            mediaUrl = nil
-//        }
-//        if let data = response["metadata"] as? [String:Any] {
-//            metadata = data
-//        } else {
-//            metadata = [:]
-//        }
-//        channelUuid = response["channel_uuid"] as? String
-//        contactUrn = response["contact_urn"] as? String
-//        contactUuid = response["contact_uuid"] as? String
-//        channelAddress = response["channel_address"] as? String
-//
-//    }
 
 //TODO: finish it
 //    var jsqMessage:JSQMessage {
@@ -182,14 +116,14 @@ final class WSService: Service {
     var ws:WebSocket!
     var didConnectToChannel: (Error?) -> () = { _ in }
     var onMessageReceived: (Result<Message>) -> () = { _ in }
-    
+
     init() {
         uuid = ""
         channel = ""
         NotificationCenter.default.addObserver(self, selector: #selector(WSService.appWillEnterForeground), name: Notification.Name.UIApplicationWillEnterForeground, object: nil)
         startNetworkReachabilityObserver()
     }
-    
+
     func send(msg:Message) {
         ws.send(msg.toJSON())
     }
@@ -228,19 +162,11 @@ final class WSService: Service {
         ws.event.open = { print("socket opened") }
         ws.event.error = { error in print("Socket error \(error)") }
         ws.event.message = { message in
-//            if let uMessage = message as? [String:Any],
-//                let msg = Message(response: uMessage) {
-//                self.onMessageReceived(.success(r: msg))
-//            } else if let error = message as? String {
-//              //  self.onMessageReceived(.error(e:error))
-////                let msg = Message(response: error)
-////                self.onMessageReceived(.success(r:error))
-//            }
             if let response = message as? String,
                 let messageData = response.dictionary,
                 let msg = Mapper<Message>().map(JSON: messageData) {
-                     self.onMessageReceived(.success(r: msg))
-                }
+                self.onMessageReceived(.success(r: msg))
+            }
         }
         ws.event.error = { error in
             //self.onMessageReceived(.error(e: error))
@@ -250,7 +176,7 @@ final class WSService: Service {
         }
         ws.open()
     }
-    
+
     @objc func appWillEnterForeground() {
         if ws.readyState == .closed {
             getChannel()
@@ -264,26 +190,25 @@ final class WSService: Service {
             switch status {
             case .notReachable:
 
-            break
+                break
             case .unknown :
 
-            break
+                break
             case .reachable(.ethernetOrWiFi):
 
                 if let socket = self.ws {
                     if socket.readyState == .closed {
-                         self.getChannel()
+                        self.getChannel()
                     }
                 }
-
-            break
+                break
             case .reachable(.wwan):
                 if let socket = self.ws {
                     if socket.readyState == .closed {
                         self.getChannel()
                     }
                 }
-            break
+                break
             }
         }
 
@@ -315,11 +240,11 @@ extension Dictionary {
             return invalidJson
         }
     }
-
+    
     func printJson() {
         print(json)
     }
-
+    
 }
 
 
