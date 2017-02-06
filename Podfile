@@ -2,7 +2,7 @@ use_frameworks!
 
 target ‘TipTap’ do
 
-pod ‘JSQMessagesViewController’, ‘~>7.3’
+pod ‘JSQMessagesViewController’, :git => 'https://github.com/ArtemChaykovsky/JSQMessagesViewController.git', :branch => ‘TipTapDevelop’
 pod 'SwiftWebSocket'
 pod 'SnapKit', '~> 3.1.2'
 pod 'Alamofire'

@@ -49,6 +49,8 @@
 #import "JSQMessagesMediaPlaceholderView.h"
 #import "JSQMessagesToolbarContentView.h"
 #import "JSQMessagesTypingIndicatorFooterView.h"
+#import "DotActivityIndicatorParms.h"
+#import "DotActivityIndicatorView.h"
 
 FOUNDATION_EXPORT double JSQMessagesViewControllerVersionNumber;
 FOUNDATION_EXPORT const unsigned char JSQMessagesViewControllerVersionString[];

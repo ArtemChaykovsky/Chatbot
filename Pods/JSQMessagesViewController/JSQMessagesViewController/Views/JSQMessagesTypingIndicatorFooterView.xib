@@ -29,19 +29,29 @@
                         <constraint firstAttribute="height" constant="34" id="j0C-FV-2gV"/>
                     </constraints>
                 </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bp9-xk-kXW" customClass="DotActivityIndicatorView">
+                    <rect key="frame" x="23" y="9" width="46" height="25"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
             </subviews>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="Vwf-dy-PS6" secondAttribute="trailing" constant="260" id="1Tm-qD-wIK"/>
+                <constraint firstItem="Bp9-xk-kXW" firstAttribute="trailing" secondItem="Z1D-Tr-HPK" secondAttribute="trailing" constant="-5" id="AAg-R9-RDr"/>
                 <constraint firstAttribute="bottom" secondItem="Z1D-Tr-HPK" secondAttribute="bottom" constant="6" id="EVf-Sx-8mX"/>
                 <constraint firstAttribute="bottom" secondItem="Vwf-dy-PS6" secondAttribute="bottom" constant="6" id="Hik-Wl-aK2"/>
+                <constraint firstAttribute="bottom" secondItem="Bp9-xk-kXW" secondAttribute="bottom" constant="12" id="Uni-6P-Y04"/>
                 <constraint firstAttribute="trailing" secondItem="Z1D-Tr-HPK" secondAttribute="trailing" constant="246" id="YMl-ej-UZl"/>
+                <constraint firstItem="Bp9-xk-kXW" firstAttribute="leading" secondItem="Z1D-Tr-HPK" secondAttribute="leading" constant="17" id="hfn-Vb-6OK"/>
+                <constraint firstItem="Bp9-xk-kXW" firstAttribute="top" secondItem="ajJ-uk-b04" secondAttribute="top" constant="9" id="pr1-Ce-Qah"/>
             </constraints>
             <connections>
+                <outlet property="activityVIew" destination="Bp9-xk-kXW" id="zvp-ad-vA6"/>
                 <outlet property="bubbleImageView" destination="Z1D-Tr-HPK" id="WpE-rP-oYB"/>
                 <outlet property="bubbleImageViewRightHorizontalConstraint" destination="YMl-ej-UZl" id="Thu-7D-dhU"/>
                 <outlet property="typingIndicatorImageView" destination="Vwf-dy-PS6" id="wQA-Pe-rx6"/>
                 <outlet property="typingIndicatorImageViewRightHorizontalConstraint" destination="1Tm-qD-wIK" id="FUp-oC-c0I"/>
             </connections>
+            <point key="canvasLocation" x="24" y="25"/>
         </collectionReusableView>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

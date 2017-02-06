@@ -301,6 +301,7 @@ extension MessagesViewController: MessageViewModelDelegate {
     }
 
     func sendInitialMessage() {
+        showTypingIndicator = true;
         chatModel.messages.append(JSQInfoMessage(senderId: userID, senderDisplayName: userID, date: Date.distantPast, text: "Hi"))
         viewModel.messageService.sendMessage(text:"Hi")
         self.finishSendingMessage()

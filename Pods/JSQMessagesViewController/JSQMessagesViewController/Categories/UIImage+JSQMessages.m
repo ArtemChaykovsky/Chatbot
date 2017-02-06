@@ -77,7 +77,7 @@
 
 + (UIImage *)jsq_bubbleCompactImage
 {
-    return [UIImage jsq_bubbleImageFromBundleWithName:@"bubble_min_copy"];
+    return [UIImage jsq_bubbleImageFromBundleWithName:@"bubble_min"];
 }
 
 + (UIImage *)jsq_bubbleCompactTaillessImage

@@ -17,7 +17,7 @@ DEPENDENCIES:
   - Crashlytics
   - Fabric
   - FLAnimatedImage (from `https://github.com/wireapp/FLAnimatedImage.git`)
-  - JSQMessagesViewController (~> 7.3)
+  - JSQMessagesViewController (from `https://github.com/ArtemChaykovsky/JSQMessagesViewController.git`, branch `TipTapDevelop`)
   - MBProgressHUD (~> 1.0.0)
   - ObjectMapper
   - SnapKit (~> 3.1.2)
@@ -26,11 +26,17 @@ DEPENDENCIES:
 EXTERNAL SOURCES:
   FLAnimatedImage:
     :git: https://github.com/wireapp/FLAnimatedImage.git
+  JSQMessagesViewController:
+    :branch: TipTapDevelop
+    :git: https://github.com/ArtemChaykovsky/JSQMessagesViewController.git
 
 CHECKOUT OPTIONS:
   FLAnimatedImage:
     :commit: 2710cb8a55be914b9adeea1f3e76ea668970eda2
     :git: https://github.com/wireapp/FLAnimatedImage.git
+  JSQMessagesViewController:
+    :commit: 542e44b93cbe8fce79b308ad326e5829e0fe1225
+    :git: https://github.com/ArtemChaykovsky/JSQMessagesViewController.git
 
 SPEC CHECKSUMS:
   Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
@@ -44,6 +50,6 @@ SPEC CHECKSUMS:
   SnapKit: 12b24f569cb7c143acc9c22b9d91b23e7b1c84a2
   SwiftWebSocket: 1ef8a0efb023544643bdf480c1ec4a62b204f293
 
-PODFILE CHECKSUM: 5cf2dd7409f342104003fb5c8379516eace6c912
+PODFILE CHECKSUM: 77dfacc9192dcd009925ca4251c73fffee5f7976
 
 COCOAPODS: 1.1.1

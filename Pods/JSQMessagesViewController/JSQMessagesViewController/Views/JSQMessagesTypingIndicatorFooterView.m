@@ -21,6 +21,7 @@
 #import "JSQMessagesBubbleImageFactory.h"
 
 #import "UIImage+JSQMessages.h"
+#import "DotActivityIndicatorView.h"
 
 const CGFloat kJSQMessagesTypingIndicatorFooterViewHeight = 46.0f;
 
@@ -32,6 +33,7 @@ const CGFloat kJSQMessagesTypingIndicatorFooterViewHeight = 46.0f;
 
 @property (weak, nonatomic) IBOutlet UIImageView *typingIndicatorImageView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *typingIndicatorImageViewRightHorizontalConstraint;
+@property (weak, nonatomic) IBOutlet DotActivityIndicatorView *activityVIew;
 
 @end
 
@@ -106,10 +108,31 @@ const CGFloat kJSQMessagesTypingIndicatorFooterViewHeight = 46.0f;
         self.bubbleImageViewRightHorizontalConstraint.constant = bubbleMarginMinimumSpacing;
         self.typingIndicatorImageViewRightHorizontalConstraint.constant = indicatorMarginMinimumSpacing;
     }
+
+//    DotActivityIndicatorView* view = [DotActivityIndicatorView new];
+//    view.frame = self.typingIndicatorImageView.frame;
+    self.activityVIew.dotParms = [self loadDotActivityIndicatorParms];
+    [self.activityVIew startAnimating];
     
     [self setNeedsUpdateConstraints];
     
-    self.typingIndicatorImageView.image = [[UIImage jsq_defaultTypingIndicatorImage] jsq_imageMaskedWithColor:ellipsisColor];
+//    self.typingIndicatorImageView.image = [[UIImage jsq_defaultTypingIndicatorImage] jsq_imageMaskedWithColor:ellipsisColor];
 }
+
+- (DotActivityIndicatorParms *)loadDotActivityIndicatorParms
+{
+    DotActivityIndicatorParms *dotParms = [DotActivityIndicatorParms new];
+    dotParms.activityViewWidth = self.typingIndicatorImageView.frame.size.width;
+    dotParms.activityViewHeight = self.typingIndicatorImageView.frame.size.height;
+    dotParms.numberOfCircles = 3;
+    dotParms.internalSpacing = 5;
+    dotParms.animationDelay = 0.2;
+    dotParms.animationDuration = 0.6;
+    dotParms.animationFromValue = 0.3;
+    dotParms.defaultColor = [UIColor grayColor];
+    dotParms.isDataValidationEnabled = YES;
+    return dotParms;
+}
+
 
 @end
