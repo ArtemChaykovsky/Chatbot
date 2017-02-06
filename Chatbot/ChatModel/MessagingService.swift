@@ -186,7 +186,8 @@ final class WSService: Service {
     init() {
         uuid = ""
         channel = ""
-        //getChannel()
+        NotificationCenter.default.addObserver(self, selector: #selector(WSService.appWillEnterForeground), name: Notification.Name.UIApplicationWillEnterForeground, object: nil)
+        startNetworkReachabilityObserver()
     }
     
     func send(msg:Message) {
@@ -249,6 +250,46 @@ final class WSService: Service {
         }
         ws.open()
     }
+    
+    @objc func appWillEnterForeground() {
+        if ws.readyState == .closed {
+            getChannel()
+        }
+    }
+
+    func startNetworkReachabilityObserver() {
+        let reachabilityManager = Alamofire.NetworkReachabilityManager(host: "www.apple.com")
+        reachabilityManager?.listener = { status in
+
+            switch status {
+            case .notReachable:
+
+            break
+            case .unknown :
+
+            break
+            case .reachable(.ethernetOrWiFi):
+
+                if let socket = self.ws {
+                    if socket.readyState == .closed {
+                         self.getChannel()
+                    }
+                }
+
+            break
+            case .reachable(.wwan):
+                if let socket = self.ws {
+                    if socket.readyState == .closed {
+                        self.getChannel()
+                    }
+                }
+            break
+            }
+        }
+
+        reachabilityManager?.startListening()
+    }
+
 }
 
 extension String {

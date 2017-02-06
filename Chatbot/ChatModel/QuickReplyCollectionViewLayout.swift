@@ -27,7 +27,7 @@ class QuickReplyCollectionViewLayout: NSObject {
 
     var items:[QuickReply] = []
     var delegate:QuickReplyCollectionViewDelegate?
-    var collectionViewCustomInset:CGFloat = 0
+    var collectionViewContentWidth:CGFloat = 0
     var collectionViewWidth:CGFloat!
 }
 
@@ -58,7 +58,7 @@ extension QuickReplyCollectionViewLayout: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if indexPath.row == 0 {
-            collectionViewCustomInset = 0
+            collectionViewContentWidth = 0
         }
         let sizingCell: QuickReplyCell = QuickReplyCell.fromNib()
         let item = items[indexPath.row]
@@ -66,15 +66,7 @@ extension QuickReplyCollectionViewLayout: UICollectionViewDelegateFlowLayout {
         sizingCell.titleLabel.font = UIFont.systemFont(ofSize: QuickReplyCellFontSize)
         let size = sizingCell.systemLayoutSizeFitting(CGSize(width: collectionView.contentSize.width, height:QuickReplyViewHeight-24), withHorizontalFittingPriority: UILayoutPriorityDefaultLow, verticalFittingPriority: UILayoutPriorityDefaultHigh)
 
-//        switch item {
-//        case .buttonWithImage(text: _, image: _):
-//            size.width += 30
-//            break
-//        default:
-//            break
-//        }
-
-        collectionViewCustomInset += size.width
+        collectionViewContentWidth += size.width
         return size
     }
 
@@ -85,19 +77,17 @@ extension QuickReplyCollectionViewLayout: UICollectionViewDelegateFlowLayout {
             collectionView.contentOffset = CGPoint.zero
             if items.count > 1 {
                 let insets: CGFloat = CGFloat(items.count-1)*CollectionViewDefaultSpacing
-                collectionViewCustomInset += (insets)
+                collectionViewContentWidth += (insets)
             }
 
-        if collectionViewCustomInset > collectionViewWidth-CollectionViewDefaultInset*2 {
+        if collectionViewContentWidth > collectionViewWidth-CollectionViewDefaultInset*2 {
                 collectionView.isScrollEnabled = true
                 return UIEdgeInsets(top: 0, left: CollectionViewDefaultInset, bottom: 0, right: CollectionViewDefaultInset)
             } else{
-
-            let offset = collectionViewWidth - collectionViewCustomInset
+            let offset = collectionViewWidth - collectionViewContentWidth
             collectionView.isScrollEnabled = false
             return UIEdgeInsets(top: 0, left: offset/2, bottom: 0, right: 0)
             }
-
     }
 }
 

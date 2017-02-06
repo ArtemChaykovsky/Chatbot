@@ -27,24 +27,10 @@ final class MessagesViewController: JSQMessagesViewController, UINavigationContr
     }
 
     override func viewDidLoad() {
-
         super.viewDidLoad()
-
         configureChatCollectionView()
         configureQuickReply()
         configureInputToolbar()
-//        viewModel.messageService.onMessageReceived = { message in
-//            chatModel.messages.append(JSQMessage(senderId: userID, senderDisplayName: userID, date: Date.distantPast, text: item.text))
-//            self.finishSendingMessage()
-//        }x
-
-        
-//        viewModel.messageService.requestFailure = { error in
-//            self.displayError(error)
-//        }
-
-//        viewModel.messageService.getChannel()
-
     }
 
     override var prefersStatusBarHidden: Bool {
@@ -57,8 +43,8 @@ final class MessagesViewController: JSQMessagesViewController, UINavigationContr
         viewModel.getChannel()
     }
 
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
          collectionViewLayout.collectionViewWidth = self.quickReplyView.frame.size.width
     }
 
@@ -89,7 +75,6 @@ final class MessagesViewController: JSQMessagesViewController, UINavigationContr
         collectionView.backgroundColor = UIColor.chatBackgroundColor()
         collectionView.collectionViewLayout.sectionInset = UIEdgeInsetsMake(20, 5, 13, -10)
         collectionView.collectionViewLayout.minimumLineSpacing = CollectionViewDefaultSpacing
-       // showTypingIndicator = true
     }
 
     private func configureInputToolbar() {
@@ -126,8 +111,6 @@ final class MessagesViewController: JSQMessagesViewController, UINavigationContr
     }
 
     func showQuickReplyViewWithItems(items: [QuickReply]) {
-
-//        collectionViewLayout.items = [QuickReply.button(text: "Odds"),QuickReply.buttonWithImage(text: "Odds", image: UIImage(named: "odds")!),QuickReply.button(text: "Odds"),QuickReply.buttonWithImage(text: "Odds", image: UIImage(named: "odds")!)]
         
         collectionViewLayout.items = items
         quickReplyView.reloadData()
@@ -157,6 +140,7 @@ final class MessagesViewController: JSQMessagesViewController, UINavigationContr
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         DispatchQueue.global().async {
         self.collectionViewLayout.collectionViewWidth = CGFloat(size.width)
+            self.quickReplyView.collectionView.collectionViewLayout.invalidateLayout()
         self.quickReplyView.collectionView.reloadData()
         }
     }
@@ -197,7 +181,7 @@ extension MessagesViewController {
         //        chatModel.messages.append(JSQMessage(senderId: userID, senderDisplayName: userID, date: Date.distantPast, text: text))
         //        self.finishSendingMessage()
 
-
+        self.showTypingIndicator = true
         chatModel.messages.append(JSQInfoMessage(senderId: userID, senderDisplayName: userID, date: Date.distantPast, text: text))
         viewModel.messageService.sendMessage(text: text)
         self.finishSendingMessage()
@@ -230,7 +214,7 @@ extension MessagesViewController {
 
     func configureCellWithGif(gifUrl:URL, cell: JSQMessagesCollectionViewCell ) {
         DispatchQueue.global().async {
-        do {
+            do {
                 let data = try Data(contentsOf: gifUrl)
                 DispatchQueue.main.async {
                     let image = FLAnimatedImage(animatedGIFData: data)
@@ -243,12 +227,11 @@ extension MessagesViewController {
                     //                cell.mediaView.addSubview(imageView)
                     cell.mediaView = imageView
                 }
-        } catch {
-            print("error")
-        }
+            } catch {
+                print("error")
+            }
         }
     }
-    
 }
 
 extension MessagesViewController: UIImagePickerControllerDelegate {
@@ -283,6 +266,7 @@ extension MessagesViewController: MessageViewModelDelegate {
     
     func didReceive(message: Message) {
 
+        self.showTypingIndicator = false
         if let text = message.text, !(message.text?.isEmpty)! {
             chatModel.messages.append(JSQInfoMessage(senderId: botID, senderDisplayName: botID, date: Date.distantPast, text:text))
             self.finishSendingMessage()
@@ -290,14 +274,13 @@ extension MessagesViewController: MessageViewModelDelegate {
         if let mediaUrl = message.mediaUrl {
 
             let data = try? Data(contentsOf: mediaUrl) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
-           // let imageView = UIImageView(
+
             if let unwrappedData = data {
                 let image = UIImage(data:unwrappedData )
                 let photoItem = JSQPhotoMediaItem(image: image)
                 photoItem?.appliesMediaViewMaskAsOutgoing = false
                 let message = JSQInfoMessage(senderId: botID, displayName: botID, media:photoItem)
                 if mediaUrl.absoluteString.contains(".gif") {
-                    //message?.gifUrl = mediaUrl
                     message?.gifUrl = mediaUrl
                 }
                 chatModel.messages.append(message!)
@@ -312,13 +295,14 @@ extension MessagesViewController: MessageViewModelDelegate {
     }
     
     func didReceive(error: Error) {
+        self.showTypingIndicator = false
         hideHUD()
         displayError(error)
     }
 
     func sendInitialMessage() {
         chatModel.messages.append(JSQInfoMessage(senderId: userID, senderDisplayName: userID, date: Date.distantPast, text: "Hi"))
-        viewModel.messageService.sendMessage(text: "Hi")
+        viewModel.messageService.sendMessage(text:"Hi")
         self.finishSendingMessage()
     }
 }
@@ -326,7 +310,8 @@ extension MessagesViewController: MessageViewModelDelegate {
 extension MessagesViewController: QuickReplyCollectionViewDelegate {
 
     func didSelectItem(item:QuickReply) {
-//        chatModel.messages.append(JSQMessage(senderId: userID, senderDisplayName: userID, date: Date.distantPast, text: item.text!))
+
+        showTypingIndicator = true
         viewModel.messageService.sendMessage(text: item.payload!)
         chatModel.messages.append(JSQInfoMessage(senderId: userID, senderDisplayName: userID, date: Date.distantPast, text: item.title!))
         self.finishSendingMessage()
