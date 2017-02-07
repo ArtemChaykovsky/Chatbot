@@ -37,7 +37,7 @@ CHECKOUT OPTIONS:
     :commit: 2710cb8a55be914b9adeea1f3e76ea668970eda2
     :git: https://github.com/wireapp/FLAnimatedImage.git
   JSQMessagesViewController:
-    :commit: 542e44b93cbe8fce79b308ad326e5829e0fe1225
+    :commit: ed66ed4642618f760aab3903c39c3bd28bfffab6
     :git: https://github.com/ArtemChaykovsky/JSQMessagesViewController.git
 
 SPEC CHECKSUMS:

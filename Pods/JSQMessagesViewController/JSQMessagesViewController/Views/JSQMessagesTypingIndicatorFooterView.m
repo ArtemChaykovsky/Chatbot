@@ -23,7 +23,7 @@
 #import "UIImage+JSQMessages.h"
 #import "DotActivityIndicatorView.h"
 
-const CGFloat kJSQMessagesTypingIndicatorFooterViewHeight = 46.0f;
+const CGFloat kJSQMessagesTypingIndicatorFooterViewHeight = 55.0f;
 
 
 @interface JSQMessagesTypingIndicatorFooterView ()
@@ -99,8 +99,8 @@ const CGFloat kJSQMessagesTypingIndicatorFooterViewHeight = 46.0f;
         CGFloat bubbleMarginMaximumSpacing = collectionViewWidth - bubbleWidth - bubbleMarginMinimumSpacing;
         CGFloat indicatorMarginMaximumSpacing = collectionViewWidth - indicatorWidth - indicatorMarginMinimumSpacing;
         
-        self.bubbleImageViewRightHorizontalConstraint.constant = bubbleMarginMaximumSpacing;
-        self.typingIndicatorImageViewRightHorizontalConstraint.constant = indicatorMarginMaximumSpacing;
+        self.bubbleImageViewRightHorizontalConstraint.constant = bubbleMarginMaximumSpacing-15;
+        self.typingIndicatorImageViewRightHorizontalConstraint.constant = indicatorMarginMaximumSpacing-15;
     }
     else {
         self.bubbleImageView.image = [bubbleImageFactory outgoingMessagesBubbleImageWithColor:messageBubbleColor].messageBubbleImage;

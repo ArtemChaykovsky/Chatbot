@@ -66,14 +66,13 @@ final class MessagesViewController: JSQMessagesViewController, UINavigationContr
         }
     }
 
-
     //MARK: Configure layout
 
     private func configureChatCollectionView() {
 
         collectionViewLayout = QuickReplyCollectionViewLayout(delegate: self)
         collectionView.backgroundColor = UIColor.chatBackgroundColor()
-        collectionView.collectionViewLayout.sectionInset = UIEdgeInsetsMake(20, 5, 13, -10)
+        collectionView.collectionViewLayout.sectionInset = UIEdgeInsetsMake(20, -15, 13, -20)
         collectionView.collectionViewLayout.minimumLineSpacing = CollectionViewDefaultSpacing
     }
 
@@ -92,7 +91,6 @@ final class MessagesViewController: JSQMessagesViewController, UINavigationContr
         inputToolbar.contentView.rightBarButtonItem.setTitle("SEND", for: .normal)
         inputToolbar.contentView.rightBarButtonItem.setTitleColor(UIColor.black, for: .normal)
         inputToolbar.contentView.rightBarButtonItemWidth = 60
-
     }
 
     private func configureQuickReply() {
@@ -114,7 +112,7 @@ final class MessagesViewController: JSQMessagesViewController, UINavigationContr
         
         collectionViewLayout.items = items
         quickReplyView.reloadData()
-        collectionView.collectionViewLayout.sectionInset = UIEdgeInsetsMake(10, 5, QuickReplyViewHeight+5, 5)
+        collectionView.collectionViewLayout.sectionInset = UIEdgeInsetsMake(20, -15, QuickReplyViewHeight+5, -20)
         collectionView.layoutIfNeeded()
         collectionView.reloadData()
         scrollToBottom(animated: false)
@@ -123,7 +121,7 @@ final class MessagesViewController: JSQMessagesViewController, UINavigationContr
 
     func hideQuickReplyView() {
         quickReplyView.isHidden = true
-        collectionView.collectionViewLayout.sectionInset = UIEdgeInsetsMake(20, 5, 13, -10)
+        collectionView.collectionViewLayout.sectionInset = UIEdgeInsetsMake(20, -15, 13, -20)
         collectionView.reloadData()
         scrollToBottom(animated: false)
     }
