@@ -9,6 +9,7 @@ PODS:
   - JSQSystemSoundPlayer (2.0.1)
   - MBProgressHUD (1.0.0)
   - ObjectMapper (2.2.2)
+  - SimpleKeychain (0.7.0)
   - SnapKit (3.1.2)
   - SwiftWebSocket (2.6.5)
 
@@ -20,6 +21,7 @@ DEPENDENCIES:
   - JSQMessagesViewController (from `https://github.com/ArtemChaykovsky/JSQMessagesViewController.git`, branch `TipTapDevelop`)
   - MBProgressHUD (~> 1.0.0)
   - ObjectMapper
+  - SimpleKeychain
   - SnapKit (~> 3.1.2)
   - SwiftWebSocket
 
@@ -47,9 +49,10 @@ SPEC CHECKSUMS:
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   ObjectMapper: 9e385c2295bcc4e16eabbcfc85db801442bba545
+  SimpleKeychain: b50cef3b87939d480ea1143425c00f5b4b70fe21
   SnapKit: 12b24f569cb7c143acc9c22b9d91b23e7b1c84a2
   SwiftWebSocket: 1ef8a0efb023544643bdf480c1ec4a62b204f293
 
-PODFILE CHECKSUM: 77dfacc9192dcd009925ca4251c73fffee5f7976
+PODFILE CHECKSUM: d18e5f5ddade610e9739a3b974692fb208bbe21f
 
 COCOAPODS: 1.1.1

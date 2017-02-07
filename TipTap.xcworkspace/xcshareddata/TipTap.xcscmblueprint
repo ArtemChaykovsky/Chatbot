@@ -7,14 +7,14 @@
     "55ADDB601B87F45428ADC586574C22B3A1AB4037" : 9223372036854775807,
     "3C62386DBC8B161717D956E0FD6C0E47F080D262" : 9223372036854775807
   },
-  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "53FE8E36-5FB7-42A5-AAE8-FFA7FBA52382",
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "49692DD1-6BA0-4D70-A895-6754FC4696A6",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "55ADDB601B87F45428ADC586574C22B3A1AB4037" : "",
     "3C62386DBC8B161717D956E0FD6C0E47F080D262" : "Chatbot\/"
   },
-  "DVTSourceControlWorkspaceBlueprintNameKey" : "Chatbot",
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "TipTap",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
-  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Chatbot.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "TipTap.xcworkspace",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ArtemChaykovsky\/Chatbot.git",

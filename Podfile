@@ -11,5 +11,5 @@ pod 'ObjectMapper'
 pod 'FLAnimatedImage', :git => 'https://github.com/wireapp/FLAnimatedImage.git'
 pod 'Fabric'
 pod 'Crashlytics'
-
+pod "SimpleKeychain"
 end

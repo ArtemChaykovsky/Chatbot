@@ -11,6 +11,7 @@ import SwiftWebSocket
 import JSQMessagesViewController
 import Alamofire
 import ObjectMapper
+import SimpleKeychain
 
 enum Result<T>{
     case success(r: T)
@@ -31,11 +32,9 @@ struct QuickReply: Mappable {
     var contentType:String?
     var title:String?
     var payload:String?
-
     //    "content_type": "text",
     //    "title": "💷 Today's Naps",
     //    "payload": "r_naps"
-
     init?(map: Map) {
 
     }
@@ -111,15 +110,16 @@ protocol Service {
 
 final class WSService: Service {
     var demoMode = false
-    var uuid: String!
     var channel: String!
     var ws:WebSocket!
+    var identifier: String!
     var didConnectToChannel: (Error?) -> () = { _ in }
     var onMessageReceived: (Result<Message>) -> () = { _ in }
 
     init() {
-        uuid = ""
+
         channel = ""
+        identifier = self.getDeviceIdentifier()
         NotificationCenter.default.addObserver(self, selector: #selector(WSService.appWillEnterForeground), name: Notification.Name.UIApplicationWillEnterForeground, object: nil)
         startNetworkReachabilityObserver()
     }
@@ -130,14 +130,14 @@ final class WSService: Service {
 
     func sendMessage(text: String) {
         if let webSocket = ws {
-            let postDict: [String: Any] = ["uuid": uuid!,"text" : text]
+            let postDict: [String: Any] = ["uuid": identifier,"text" : text]
             webSocket.send(postDict.json)
         }
     }
 
     func getChannel() {
-        uuid = UUID().uuidString
-        Alamofire.request(baseUrl+"getChannel" , method: .post, parameters: ["uuid":uuid], encoding: URLEncoding.httpBody)
+        //deviceIdentifier = self.deviceIdentifier()
+        Alamofire.request(baseUrl+"getChannel" , method: .post, parameters: ["uuid": identifier], encoding: URLEncoding.httpBody)
             .responseJSON { response in
                 print(response.request as Any)  // original URL request
                 print(response.response as Any) // URL response
@@ -211,10 +211,18 @@ final class WSService: Service {
                 break
             }
         }
-
         reachabilityManager?.startListening()
     }
 
+    func getDeviceIdentifier() -> String {
+        if let identifier = A0SimpleKeychain().string(forKey:"deviceIdentifier") {
+            return identifier
+        } else {
+            let identifier = String.random()
+            A0SimpleKeychain().setString(identifier, forKey: "deviceIdentifier")
+            return identifier
+        }
+    }
 }
 
 extension String {
@@ -226,6 +234,17 @@ extension String {
         } catch {
             return nil
         }
+    }
+
+    static func random(length: Int = 20) -> String {
+        let base = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        var randomString: String = ""
+
+        for _ in 0..<length {
+            let randomValue = arc4random_uniform(UInt32(base.characters.count))
+            randomString += "\(base[base.index(base.startIndex, offsetBy: Int(randomValue))])"
+        }
+        return randomString
     }
 }
 
